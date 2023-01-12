@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ScrollingBackground
+    uniqueID: 4207096363
+    locked: 0
+  - name: Background
+    uniqueID: 3490236751
+    locked: 0
+  - name: Level
+    uniqueID: 2606012295
+    locked: 0
+  - name: Objects
+    uniqueID: 2276980253
+    locked: 0
+  - name: Players
+    uniqueID: 3808071739
+    locked: 0
+  - name: Foreground
+    uniqueID: 3856294755
+    locked: 0

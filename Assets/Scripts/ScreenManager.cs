@@ -1,5 +1,3 @@
-using System.Threading;
-using TMPro;
 using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
@@ -20,16 +18,5 @@ public class ScreenManager : MonoBehaviour
             print("Split Screen Mode activated!");
             //statusDisplay.text = "Display Mode: Splitscreen";
         }
-    }
-
-
-    private void Start()
-    {
-        
-    }
-    
-    private void Update()
-    {
-        
     }
 }

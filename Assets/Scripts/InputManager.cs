@@ -1,89 +1,35 @@
+using System;
 using System.Threading;
 using TMPro;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance { get; private set; }
+
     private string[] joysticks;
     private int joysticksCount, joysticksCountOld;
     private bool searchForNewInputDevices;
     private bool inputDevicesChanged;
-    private string playerName;
 
-    private class PlayerControls
-    {
-        private string moveUp, moveDown, moveLeft, moveRight, actionButton;
-        private string horizontalMovement, verticalMovement;
-        private string playerName;
-
-        public PlayerControls(string playerName)
-        {
-            this.playerName = playerName;
-            print("Player Controller" + playerName + " created");
-        }
-        
-        public void SetMovement(string horizontalMovement, string verticalMovement)
-        {
-            this.horizontalMovement = horizontalMovement;
-            this.verticalMovement = verticalMovement;
-
-        }
-
-        public void SetMovement(string moveUp, string moveDown, string moveLeft, string moveRight)
-        {
-            this.moveUp = moveUp;
-            this.moveDown = moveDown;
-            this.moveLeft = moveLeft;
-            this.moveRight = moveRight;
-        }
-
-        public string GetName()
-        {
-            return playerName;
-        }
-
-        public void SetAction(string actionButton)
-        {
-            this.actionButton = actionButton;
-        }
-
-        public string GetUp()
-        {
-            return moveUp;
-        }
-
-        public string GetDown()
-        {
-            return moveDown;
-        }
-
-        public string GetLeft()
-        {
-            return moveLeft;
-        }
-
-        public string GetRight()
-        {
-            return moveRight;
-        }
-
-        public string GetAction()
-        {
-            return actionButton;
-        }
-    }
+    private string playerOneHorizontalAxis, playerOneVerticalAxis, playerOneActionButton;
+    private string playerTwoHorizontalAxis, playerTwoVerticalAxis, playerTwoActionButton;
 
     public TMP_Text statusPlayerOne, statusPlayerTwo;
     
     private Thread searchForInputDevices;
 
-    private PlayerControls playerOne, playerTwo;
-    
     private void Awake()
     {
-        playerOne = new PlayerControls("Player 1");
-        playerTwo = new PlayerControls("Player 2");
-    
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
         searchForInputDevices = new Thread(InputChecker);
         searchForNewInputDevices = true;
         joysticksCountOld = 99;
@@ -127,53 +73,80 @@ public class InputManager : MonoBehaviour
             switch (joysticksCount)
             {
                 case 0:
+                    playerOneHorizontalAxis = "KeyboardOnlyAD";
+                    playerOneVerticalAxis   = "KeyboardOnlyWS";
+                    playerOneActionButton   = "KeyboardOnlyAction1";
+
+                    playerTwoHorizontalAxis = "KeyboardOnlyUpDown";
+                    playerTwoVerticalAxis   = "KeyboardOnlyLeftRight";
+                    playerTwoActionButton   = "KeyboardOnlyAction2";
+                    
                     print("Only keyboard found. Use two keyboards to control players");
                     statusPlayerOne.text = "Player 1: Keyboard (1)";
-                    playerOne.SetMovement("W", "S", "A", "D");
-                    playerOne.SetAction("E");
                     statusPlayerTwo.text = "Player 2: Keyboard (2)";
-                    playerTwo.SetMovement("UpArrow", "DownArrow", "LeftArrow", "RightArrow");
-                    playerTwo.SetAction("Space");
                     break;
                 
                 case 1:
+                    playerOneHorizontalAxis = "KeyboardOnlyAD";
+                    playerOneVerticalAxis   = "KeyboardOnlyWS";
+                    playerOneActionButton   = "KeyboardOnlyAction1";
+
+                    playerTwoHorizontalAxis = "Player2 Joystick Horizontal";
+                    playerTwoVerticalAxis   = "Player2 Joystick Vertical";
+                    playerTwoActionButton   = "Joystick2 Action";
+                    
                     print("One joystick found. Player one uses keyboard, player two joystick");
                     statusPlayerOne.text = "Player 1: Keyboard";
-                    playerOne.SetMovement("W", "S", "A", "D");
-                    playerOne.SetAction("E");
                     statusPlayerTwo.text = "Player 2: Gamepad";
-                    playerTwo.SetMovement("Horizontal", "Vertical");
-                    playerTwo.SetAction("Joystick1Button0");
                     break;
                 
                 case 2:
+                    playerOneHorizontalAxis = "Player1 Joystick Horizontal";
+                    playerOneVerticalAxis   = "Player1 Joystick Vertical";
+                    playerOneActionButton   = "Joystick1 Action";
+
+                    playerTwoHorizontalAxis = "Player2 Joystick Horizontal";
+                    playerTwoVerticalAxis   = "Player2 Joystick Vertical";
+                    playerTwoActionButton   = "Joystick2 Action";
+                    
                     print("Both players use joysticks, assigned by joystick number");
                     statusPlayerOne.text = "Player 1: Gamepad (1)";
-                    playerOne.SetMovement("Horizontal", "Vertical");
-                    playerOne.SetAction("Joystick1Button0");
                     statusPlayerTwo.text = "Player 2: Gamepad (2)";
-                    playerTwo.SetMovement("Horizontal", "Vertical");
-                    playerTwo.SetAction("Joystick2Button0");
                     break;
                 
                 default:
+                    playerOneHorizontalAxis = "Player1 Joystick Horizontal";
+                    playerOneVerticalAxis   = "Player1 Joystick Vertical";
+                    playerOneActionButton   = "Joystick1 Action";
+
+                    playerTwoHorizontalAxis = "Player2 Joystick Horizontal";
+                    playerTwoVerticalAxis   = "Player2 Joystick Vertical";
+                    playerTwoActionButton   = "Joystick2 Action";
+                    
                     print("More than one joystick found. Same procedure like case 2");
                     statusPlayerOne.text = "Player 1: Gamepad (1)";
-                    playerOne.SetMovement("Horizontal", "Vertical");
-                    playerOne.SetAction("Joystick1Button0");
                     statusPlayerTwo.text = "Player 2: Gamepad (2)";
-                    playerTwo.SetMovement("Horizontal", "Vertical");
-                    playerTwo.SetAction("Joystick2Button0");
                     break;
             }
         }
     }
-    
-    public void SetPlayer(string playerName)
+
+    public string GetInputForPlayer(int playerNumber, string input)
     {
-        this.playerName = playerName;
+        if (input == "Horizontal")
+        {
+            return playerNumber == 1 ? playerOneHorizontalAxis : playerTwoHorizontalAxis;
+        }
+        else if (input == "Vertical")
+        {
+            return playerNumber == 1 ? playerOneVerticalAxis : playerTwoVerticalAxis;
+        }
+        else if (input == "Action")
+        {
+            return playerNumber == 1 ? playerOneActionButton : playerTwoActionButton;
+        }
+        return "Error";
     }
-    
 
     private void InputChecker()
     {

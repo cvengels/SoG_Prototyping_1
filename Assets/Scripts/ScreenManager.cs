@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScreenManager : MonoBehaviour
 {
-    public TMP_Text statusDisplay;
+    //public TMP_Text statusDisplay;
     
     private void Awake()
     {
@@ -13,12 +13,12 @@ public class ScreenManager : MonoBehaviour
             // Activate the display 1 (second monitor connected to the system).
             Display.displays[1].Activate();
             print("Dual Screen Mode activated!");
-            statusDisplay.text = "Display Mode: Dualscreen";
+            //statusDisplay.text = "Display Mode: Dualscreen";
         }
         else
         {
             print("Split Screen Mode activated!");
-            statusDisplay.text = "Display Mode: Splitscreen";
+            //statusDisplay.text = "Display Mode: Splitscreen";
         }
     }
 

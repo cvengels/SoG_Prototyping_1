@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 5b5fb9e5bb1b9744ea38f9c599d66848
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 464280083726990356
+    second: idle_cat_wip_0
+  - first:
+      213: -3281102856184330645
+    second: idle_cat_wip_1
+  - first:
+      213: -4670903137015387742
+    second: idle_cat_wip_2
+  - first:
+      213: -195176212836694086
+    second: idle_cat_wip_3
+  - first:
+      213: -1378905064001379271
+    second: idle_cat_wip_4
+  - first:
+      213: -8035388696669229860
+    second: idle_cat_wip_5
+  - first:
+      213: -6898445108048504333
+    second: idle_cat_wip_6
+  - first:
+      213: -4622592381321752914
+    second: idle_cat_wip_7
+  - first:
+      213: 6686532725242725128
+    second: idle_cat_wip_8
+  - first:
+      213: -651644408071990329
+    second: idle_cat_wip_9
+  - first:
+      213: -666774010147440514
+    second: idle_cat_wip_10
+  - first:
+      213: 5025518774524538454
+    second: idle_cat_wip_11
+  - first:
+      213: -7734815967082797034
+    second: idle_cat_wip_12
+  - first:
+      213: 5919790702033526825
+    second: idle_cat_wip_13
+  - first:
+      213: -5694315228288195898
+    second: idle_cat_wip_14
+  - first:
+      213: -1147649979049416569
+    second: idle_cat_wip_15
+  - first:
+      213: -6099260395950065072
+    second: idle_cat_wip_16
+  - first:
+      213: -1270225481153785826
+    second: idle_cat_wip_17
+  - first:
+      213: 1580717114982475543
+    second: idle_cat_wip_18
+  - first:
+      213: -1398039677273841635
+    second: idle_cat_wip_19
+  - first:
+      213: -5614117189347421142
+    second: idle_cat_wip_20
+  - first:
+      213: -2023509531195158191
+    second: idle_cat_wip_21
+  - first:
+      213: -2159286590148099470
+    second: idle_cat_wip_22
+  - first:
+      213: -1330824493991433300
+    second: idle_cat_wip_23
+  - first:
+      213: -3398334722884515510
+    second: idle_cat_wip_24
+  - first:
+      213: 96321780985759798
+    second: idle_cat_wip_25
+  - first:
+      213: -1753470037255125969
+    second: idle_cat_wip_26
+  - first:
+      213: -7374212960126109160
+    second: idle_cat_wip_27
+  - first:
+      213: -3486182786928261825
+    second: idle_cat_wip_28
+  - first:
+      213: 5879787431605616940
+    second: idle_cat_wip_29
+  - first:
+      213: -966600629953520251
+    second: idle_cat_wip_30
+  - first:
+      213: 4433746411274586044
+    second: idle_cat_wip_31
+  - first:
+      213: 1643783458958826978
+    second: idle_cat_wip_32
+  - first:
+      213: -7962662639489975296
+    second: idle_cat_wip_33
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: idle_cat_wip_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41cf5dab644717600800000000000000
+      internalID: 464280083726990356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_1
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b660d99165e2772d0800000000000000
+      internalID: -3281102856184330645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_2
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9a0f9285e9d2fb0800000000000000
+      internalID: -4670903137015387742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_3
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab7434db4489a4df0800000000000000
+      internalID: -195176212836694086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_4
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 934e53966252ddce0800000000000000
+      internalID: -1378905064001379271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_5
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 2500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc67debd809c7090800000000000000
+      internalID: -8035388696669229860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f9dc3849bcc340a0800000000000000
+      internalID: -6898445108048504333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_7
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaec3e188b049dfb0800000000000000
+      internalID: -4622592381321752914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_8
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8030e1b36165bcc50800000000000000
+      internalID: 6686532725242725128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_9
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3dff80dd4e4f6f0800000000000000
+      internalID: -651644408071990329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_10
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78f2bb02942fb6f0800000000000000
+      internalID: -666774010147440514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_11
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 2000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65e6797f2ba3eb540800000000000000
+      internalID: 5025518774524538454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618a207dbd968a490800000000000000
+      internalID: -7734815967082797034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_13
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9206e537742572250800000000000000
+      internalID: 5919790702033526825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_14
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2e8ca387ab9f0b0800000000000000
+      internalID: -5694315228288195898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_15
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7886640bc6ab210f0800000000000000
+      internalID: -1147649979049416569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_16
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ab9c23cf21b5ba0800000000000000
+      internalID: -6099260395950065072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_17
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 1500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10dd23a7a04f5ee0800000000000000
+      internalID: -1270225481153785826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71729e057d5dfe510800000000000000
+      internalID: 1580717114982475543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_19
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10e036125a299ce0800000000000000
+      internalID: -1398039677273841635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_20
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2458814926a612b0800000000000000
+      internalID: -5614117189347421142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_21
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151de796dcc0be3e0800000000000000
+      internalID: -2023509531195158191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_22
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27245f1694ca802e0800000000000000
+      internalID: -2159286590148099470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_23
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 1000
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab60497c26f78de0800000000000000
+      internalID: -1330824493991433300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a49c79e1390b6d0d0800000000000000
+      internalID: -3398334722884515510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_25
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6380ac34624365100800000000000000
+      internalID: 96321780985759798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_26
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f240e199a4c6aa7e0800000000000000
+      internalID: -1753470037255125969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_27
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81af99d026889a990800000000000000
+      internalID: -7374212960126109160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_28
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f354f03d9379e9fc0800000000000000
+      internalID: -3486182786928261825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_29
+      rect:
+        serializedVersion: 2
+        x: 1655
+        y: 500
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c21c8af3483399150800000000000000
+      internalID: 5879787431605616940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d93fb29d1f592f0800000000000000
+      internalID: -966600629953520251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_31
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 0
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb74f2cbed4d78d30800000000000000
+      internalID: 4433746411274586044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_32
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 0
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ed57e6c854efc610800000000000000
+      internalID: 1643783458958826978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle_cat_wip_33
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 0
+        width: 331
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00cfce27480fe7190800000000000000
+      internalID: -7962662639489975296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

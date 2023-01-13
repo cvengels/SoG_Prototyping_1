@@ -135,15 +135,57 @@ public class InputManager : MonoBehaviour
     {
         if (input == "Horizontal")
         {
-            return playerNumber == 1 ? playerOneHorizontalAxis : playerTwoHorizontalAxis;
+            if (playerOneHorizontalAxis != "" && playerTwoHorizontalAxis != "")
+            {
+                return playerNumber == 1 ? playerOneHorizontalAxis : playerTwoHorizontalAxis;
+            }
+            else
+            {
+                if (playerNumber == 1)
+                {
+                    return "KeyboardOnlyAD";
+                }
+                else
+                {
+                    return "KeyboardOnlyLeftRight";
+                }
+            }
         }
         else if (input == "Vertical")
         {
-            return playerNumber == 1 ? playerOneVerticalAxis : playerTwoVerticalAxis;
+            if (playerOneVerticalAxis != "" && playerTwoVerticalAxis != "")
+            {
+                return playerNumber == 1 ? playerOneVerticalAxis : playerTwoVerticalAxis;
+            }
+            else
+            {
+                if (playerNumber == 1)
+                {
+                    return "KeyboardOnlyWS";
+                }
+                else
+                {
+                    return "KeyboardOnlyUpDown";
+                }
+            }
         }
         else if (input == "Action")
         {
-            return playerNumber == 1 ? playerOneActionButton : playerTwoActionButton;
+            if (playerOneActionButton != "" && playerTwoActionButton != "")
+            {
+                return playerNumber == 1 ? playerOneActionButton : playerTwoActionButton;
+            }
+            else
+            {
+                if (playerNumber == 1)
+                {
+                    return "KeyboardOnlyAction1";
+                }
+                else
+                {
+                    return "KeyboardOnlyAction2";
+                }
+            }
         }
         return "Error";
     }
@@ -152,7 +194,6 @@ public class InputManager : MonoBehaviour
     {
         while (true)
         {
-            Thread.Sleep(0);
             searchForNewInputDevices = true;
             Thread.Sleep(1000);
         }

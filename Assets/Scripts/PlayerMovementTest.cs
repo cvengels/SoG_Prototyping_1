@@ -1,5 +1,6 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 // ReSharper disable Unity.PreferAddressByIdToGraphicsParams
 
@@ -7,125 +8,106 @@ public class PlayerMovementTest : MonoBehaviour
 {
     private Rigidbody2D playerRB;
     private Animator animator;
+
+    [SerializeField] private Transform[] groundCheck;
+    [SerializeField] private Transform[] wallCheck;
+    private LayerMask floors, walls;
     
     [SerializeField] private string playerName;
-    
-    [SerializeField] private Vector2 movementDirection;
-    [SerializeField] private float characterRunThresholdJoystick = 0.5f;
+
+    [SerializeField] private float horizontal, selectedSpeed;
+    [SerializeField][Range(0f, 1f)] private float deadZone = 0.2f;
+    [SerializeField][Range(0f, 1f)] private float characterRunThresholdJoystick = 0.5f;
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float runSpeed = 6f;
     [SerializeField] private float jumpHeight = 5f;
-    
-    void Start()
+    [SerializeField][Range(0f, 1f)] private float jumpDampening = 0.5f;
+
+    private void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
-    
-    void FixedUpdate()
+
+    private void Update()
     {
-        if (playerName == "PlayerOne")
-        {
-            if (false) //TODO add new input system for action button
-            {
-                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
-            }
-            
-            playerRB.velocity = new Vector2(movementDirection.x * walkSpeed, playerRB.velocity.y);
-        }
-        else
-        {
-            if (false)//TODO add new input system for action button
-            {
-                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
-            }
-        }
         
-        if (movementDirection.x < 0f)
-        {
-            transform.localScale = new Vector2(-1, 1);
-        }
-        else
+        playerRB.velocity = new Vector2(selectedSpeed, playerRB.velocity.y);
+
+        if (selectedSpeed > 0f)
         {
             transform.localScale = new Vector2(1, 1);
         }
-
-        /*
-        // Animations
-        if (Mathf.Abs(playerRB.velocity.x) < 0.01f && Mathf.Abs(playerRB.velocity.y) < 0.01f)
+        else if (selectedSpeed < 0f)
         {
-            animator.SetBool("walk", false);
-            animator.SetBool("jump", false);
+            transform.localScale = new Vector2(-1, 1);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        foreach (var groundCheckPoint in groundCheck)
+        {
+            if (Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, floors))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool OnWall()
+    {
+        foreach (var wallCheckPoint in wallCheck)
+        {
+            if (Physics2D.OverlapCircle(wallCheckPoint.position, 0.2f, walls))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        horizontal = Mathf.Clamp(context.ReadValue<Vector2>().x, -1f, 1f);
+
+        if (Mathf.Abs(horizontal) > deadZone)
+        {
+            selectedSpeed = walkSpeed;
+            animator.SetBool("walk", true);
+            animator.SetBool("run", false);
+            Gamepad.current.SetMotorSpeeds(0.05f, 0.2f);
         }
         else
         {
-            if (Mathf.Abs(playerRB.velocity.y) > 0.05f)
-            {
-                animator.SetBool("jump", true);
-                animator.SetBool("walk", false);
-            }
-            else
-            {
-                animator.SetBool("walk", true);
-                animator.SetBool("jump", false);
-            }
+            selectedSpeed = 0f;
+            animator.SetBool("walk", false);
+            animator.SetBool("run", false);
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
         }
-        */
-
-
         
-        /*int playerNumber = playerName == "PlayerOne" ? 1 : 2;
-
-        // horizontal movement
-        horizontalMovement = Input.GetAxis(InputManager.Instance.GetInputForPlayer(playerNumber, "Horizontal"));
-        if (horizontalMovement != 0f)
+        if (Mathf.Abs(horizontal) > characterRunThresholdJoystick)
         {
-            playerRB.velocity = new Vector2(horizontalMovement * movementSpeed, playerRB.velocity.y);
-            if (horizontalMovement < 0f)
-            {
-                transform.localScale = new Vector2(-1, 1);
-            }
-            else
-            {
-                transform.localScale = new Vector2(1, 1);
-            }
+            selectedSpeed = runSpeed;
+            animator.SetBool("walk", false);
+            animator.SetBool("run", true);
+            Gamepad.current.SetMotorSpeeds(0.3f, 0.8f);
         }
-        
-        // action event
-        actionButton = Input.GetAxis(InputManager.Instance.GetInputForPlayer(playerNumber, "Action"));
-        if (actionButton > 0f)
+
+        selectedSpeed *= horizontal > 0f ? 1 : -1;
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && IsGrounded())
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
         }
-        
-        if (playerName == "PlayerOne")
+
+        if (context.canceled && playerRB.velocity.y > 0f)
         {
-           // Animations
-            if (Mathf.Abs(playerRB.velocity.x) < 0.01f && Mathf.Abs(playerRB.velocity.y) < 0.01f)
-            {
-                animator.SetBool("catWalk", false);
-                animator.SetBool("catJump", false);
-            }
-            else
-            {
-                if (Mathf.Abs(playerRB.velocity.y) > 0.05f)
-                {
-                    animator.SetBool("catJump", true);
-                    animator.SetBool("catWalk", false);
-                }
-                else
-                {
-                    animator.SetBool("catWalk", true);
-                    animator.SetBool("catJump", false);
-                }
-            }
-            
-            
+            playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * jumpDampening);
         }
-        
-        else if (playerName == "PlayerTwo")
-        {
-            //
-        }*/
     }
 }

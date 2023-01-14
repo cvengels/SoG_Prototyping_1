@@ -77,14 +77,12 @@ public class PlayerMovementTest : MonoBehaviour
             selectedSpeed = walkSpeed;
             animator.SetBool("walk", true);
             animator.SetBool("run", false);
-            Gamepad.current.SetMotorSpeeds(0.05f, 0.2f);
         }
         else
         {
             selectedSpeed = 0f;
             animator.SetBool("walk", false);
             animator.SetBool("run", false);
-            Gamepad.current.SetMotorSpeeds(0f, 0f);
         }
         
         if (Mathf.Abs(horizontal) > characterRunThresholdJoystick)
@@ -92,7 +90,6 @@ public class PlayerMovementTest : MonoBehaviour
             selectedSpeed = runSpeed;
             animator.SetBool("walk", false);
             animator.SetBool("run", true);
-            Gamepad.current.SetMotorSpeeds(0.3f, 0.8f);
         }
 
         selectedSpeed *= horizontal > 0f ? 1 : -1;

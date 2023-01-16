@@ -7,14 +7,16 @@ using UnityEngine.InputSystem;
 public class PlayerMovementTest : MonoBehaviour
 {
     private Rigidbody2D playerRB;
-    //private Animator animator;
+    private Animator animator;
+    private AnimationType currentAnimation;
 
     [SerializeField] private Transform[] groundCheck;
     [SerializeField] private Transform[] wallCheck;
-    [SerializeField] private LayerMask floors, walls;
+    [SerializeField] private LayerMask floorLayer, wallLayer;
     [SerializeField] private bool isOnFloor, isOnWall;
     
     [SerializeField] private string playerName;
+    [SerializeField] private string currentAnimationPlayed;
 
     [SerializeField] private float horizontal, selectedSpeed;
     [SerializeField][Range(0f, 1f)] private float deadZone = 0.2f;
@@ -28,11 +30,18 @@ public class PlayerMovementTest : MonoBehaviour
     private void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+    }
+    
+    private void Update()
+    {
+        IsTouchingAnything();
+        SetAnimationState();
     }
 
     private void FixedUpdate()
     {
+        
         playerRB.velocity = new Vector2(selectedSpeed, playerRB.velocity.y);
 
         if (selectedSpeed > 0f)
@@ -43,24 +52,14 @@ public class PlayerMovementTest : MonoBehaviour
         {
             transform.localScale = new Vector2(-1, 1);
         }
-
-        IsTouchingAnything();
-        SetAnimationState();
     }
 
     private void SetAnimationState()
     {
-        /*
-        animator.SetBool("walk", false);
-        animator.SetBool("run", false);
-        animator.SetBool("jump", false);
-        animator.SetBool("falling", false);
-        animator.SetBool("onWall", false);
-        */
-        
         if (isOnWall)
         {
-            //animator.SetBool("onWall", true);
+            ChangeAnimationState(playerName, AnimationType.Wall);
+            return;
         }
         
         if (isOnFloor)
@@ -69,31 +68,26 @@ public class PlayerMovementTest : MonoBehaviour
 
             if (absSpeed > walkSpeed)
             {
-                //animator.SetBool("walk", false);
-                //animator.SetBool("run", true);
+                ChangeAnimationState(playerName, AnimationType.Run);
             }
             else if (absSpeed > 0f && absSpeed < runSpeed)
             {
-                //animator.SetBool("walk", true);
-                //animator.SetBool("run", false);
+                ChangeAnimationState(playerName, AnimationType.Walk);
             }
             else
             {
-                //animator.SetBool("walk", false);
-                //animator.SetBool("run", false);
+                ChangeAnimationState(playerName, AnimationType.Idle);
             }
-
+            return;
         }
 
         if (playerRB.velocity.y > 0f)
         {
-            //animator.SetBool("jump", true);
-            //animator.SetBool("falling", false);
+            ChangeAnimationState(playerName, AnimationType.Jump);
         }
         else if (playerRB.velocity.y < 0f)
         {
-            //animator.SetBool("jump", false);
-            //animator.SetBool("falling", true);
+            ChangeAnimationState(playerName, AnimationType.Fall);
         }
 
     }
@@ -105,7 +99,7 @@ public class PlayerMovementTest : MonoBehaviour
         
         foreach (var groundCheckPoint in groundCheck)
         {
-            if (Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, floors))
+            if (Physics2D.OverlapCircle(groundCheckPoint.position, 0.2f, floorLayer))
             {
                 isOnFloor = true;
                 break;
@@ -120,13 +114,12 @@ public class PlayerMovementTest : MonoBehaviour
 
         foreach (var wallCheckPoint in wallCheck)
         {
-            if (Physics2D.OverlapCircle(wallCheckPoint.position, 0.2f, walls))
+            if (Physics2D.OverlapCircle(wallCheckPoint.position, 0.2f, wallLayer))
             {
                 isOnWall = true;
                 break;
             }
         }
-        
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -160,5 +153,24 @@ public class PlayerMovementTest : MonoBehaviour
         {
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * jumpDampening);
         }
+    }
+
+    private void ChangeAnimationState(CharType pawnName, AnimationType newAnimation)
+    {
+        if (currentAnimation == newAnimation) return;
+
+        var animationName = AnimationManager.GetAnimationName(pawnName, newAnimation);
+        //print("Animation found: " + animationName + " / " + animationName.GetType());
+        currentAnimationPlayed = animationName;
+        
+        animator.Play(animationName);
+
+        currentAnimation = newAnimation;
+    }
+    
+    private void ChangeAnimationState(string pawnName, AnimationType newAnimation)
+    {
+        var getName = (CharType)Enum.Parse(typeof(CharType), pawnName);
+        ChangeAnimationState(getName, newAnimation);
     }
 }

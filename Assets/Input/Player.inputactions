@@ -1,5 +1,5 @@
 {
-    "name": "Player 1",
+    "name": "Player",
     "maps": [
         {
             "name": "Player",
@@ -38,7 +38,7 @@
                     "name": "AD",
                     "id": "00ca640b-d935-4593-8157-c05846ea39b3",
                     "path": "Dpad",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
@@ -71,7 +71,7 @@
                     "name": "",
                     "id": "e6fb4c41-ac82-4b72-b454-ee583b31e6b5",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Action",
@@ -82,7 +82,7 @@
                     "name": "",
                     "id": "3da5f9da-fd0a-4f72-b944-564fa5171834",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Action",

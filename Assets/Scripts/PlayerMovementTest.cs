@@ -160,7 +160,6 @@ public class PlayerMovementTest : MonoBehaviour
         if (currentAnimation == newAnimation) return;
 
         var animationName = AnimationManager.GetAnimationName(pawnName, newAnimation);
-        //print("Animation found: " + animationName + " / " + animationName.GetType());
         currentAnimationPlayed = animationName;
         
         animator.Play(animationName);

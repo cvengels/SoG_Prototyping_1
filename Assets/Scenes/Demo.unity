@@ -265,7 +265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &109556358
 Transform:
   m_ObjectHideFlags: 0
@@ -273,8 +273,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109556357}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.43, y: 10.04, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -330,14 +330,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109556357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d04415682d3558244b8e407485d5c2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1254125134}
-  offset: {x: 0, y: 4, z: -10}
-  smoothFactor: 0.1
+  offset: {x: 0, y: 2.6, z: -10}
+  smoothFactor: 0.75
 --- !u!1 &121333273
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
 --- !u!1 &310598369
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,14 +975,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d04415682d3558244b8e407485d5c2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 178912682}
-  offset: {x: 0, y: 8.48, z: -10}
-  smoothFactor: 1
+  offset: {x: 0, y: 4.5, z: -10}
+  smoothFactor: 0.75
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1033,8 +1033,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40, y: 38.36, z: -10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1754,6 +1754,7 @@ GameObject:
   - component: {fileID: 1254125134}
   - component: {fileID: 1254125133}
   - component: {fileID: 1254125135}
+  - component: {fileID: 1254125139}
   - component: {fileID: 1254125136}
   - component: {fileID: 1254125137}
   - component: {fileID: 1254125138}
@@ -1763,7 +1764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1254125133
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1837,19 +1838,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254125132}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3facb0da25c36a34783e124e5d2a2061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: []
-  wallCheck: []
+  groundCheck:
+  - {fileID: 1248472089}
+  wallCheck:
+  - {fileID: 1364330104}
+  - {fileID: 310598370}
   floorLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   isOnFloor: 0
   isOnWall: 0
   playerName: Mouse
@@ -1857,12 +1861,12 @@ MonoBehaviour:
   horizontal: 0
   selectedSpeed: 0
   deadZone: 0.2
-  characterRunThresholdJoystick: 0.5
-  walkSpeed: 3
-  runSpeed: 6
-  jumpHeight: 10
-  extraGravity: 1
-  jumpDampening: 0.5
+  characterRunThresholdJoystick: 0.85
+  walkSpeed: 8
+  runSpeed: 45.44
+  jumpHeight: 48.8
+  extraGravity: 100
+  jumpDampening: 0.319
 --- !u!50 &1254125136
 Rigidbody2D:
   serializedVersion: 4
@@ -1876,13 +1880,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.5
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 749b59897223e414596c66973c696f70, type: 2}
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1254125137
 BoxCollider2D:
@@ -1929,6 +1933,76 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1254125139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254125132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d98e557d91c09a647941bf2cec6250b7, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 178912683}
+        m_TargetAssemblyTypeName: PlayerMovementTest, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6ca27184-b1b3-4501-bc2a-bb1fdc5863dc
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/leftStick,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 178912683}
+        m_TargetAssemblyTypeName: PlayerMovementTest, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bbbd1086-ab8e-43a0-9778-e58bfa5e4b32
+    m_ActionName: Player/Action[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0905c6b8-2558-415a-bdbf-73676cf090f9
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0ea7301b-2b55-4de7-bcf3-dec17bb2d0c7
+    m_ActionName: UI/Action[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Gamepad
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 109556359}
 --- !u!1 &1300063693
 GameObject:
   m_ObjectHideFlags: 0

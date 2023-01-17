@@ -20,12 +20,12 @@ public class PlayerMovementTest : MonoBehaviour
 
     [SerializeField] private float horizontal, selectedSpeed;
     [SerializeField][Range(0f, 1f)] private float deadZone = 0.2f;
-    [SerializeField][Range(0f, 1f)] private float characterRunThresholdJoystick = 0.5f;
-    [SerializeField] private float walkSpeed = 3f;
-    [SerializeField] private float runSpeed = 6f;
-    [SerializeField][Range(1f, 100f)] private float jumpHeight = 5f;
-    [SerializeField][Range(1f, 100f)] private float extraGravity = 1f;
-    [SerializeField][Range(0f, 1f)] private float jumpDampening = 0.5f;
+    [SerializeField][Range(0f, 1f)] private float characterRunThresholdJoystick = 0.75f;
+    [SerializeField] private float walkSpeed = 8f;
+    [SerializeField] private float runSpeed = 45f;
+    [SerializeField][Range(1f, 100f)] private float jumpHeight = 50f;
+    [SerializeField][Range(1f, 200f)] private float extraGravity = 100f;
+    [SerializeField][Range(0f, 1f)] private float jumpDampening = 0.3f;
 
     private void Start()
     {
@@ -43,7 +43,6 @@ public class PlayerMovementTest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
         playerRB.velocity = new Vector2(selectedSpeed, playerRB.velocity.y);
 
         if (selectedSpeed > 0f)

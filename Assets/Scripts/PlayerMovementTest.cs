@@ -31,6 +31,8 @@ public class PlayerMovementTest : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
+        ChangeAnimationState(playerName, AnimationType.Idle);
     }
     
     private void Update()
@@ -56,7 +58,7 @@ public class PlayerMovementTest : MonoBehaviour
 
     private void SetAnimationState()
     {
-        if (isOnWall)
+        if (isOnWall && !isOnFloor)
         {
             ChangeAnimationState(playerName, AnimationType.Wall);
             return;

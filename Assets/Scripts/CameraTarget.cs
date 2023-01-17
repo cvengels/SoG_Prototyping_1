@@ -9,6 +9,8 @@ public class CameraTarget : MonoBehaviour
     void Start()
     {
         offset = transform.position - target.position;
+
+        transform.position = target.position;
     }
     
     void Update()

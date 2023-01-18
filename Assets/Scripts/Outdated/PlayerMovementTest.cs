@@ -90,7 +90,6 @@ public class PlayerMovementTest : MonoBehaviour
         {
             ChangeAnimationState(playerName, AnimationType.Fall);
         }
-
     }
 
     private void IsTouchingAnything()

@@ -1,32 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum AnimationType
-{
-    Idle,
-    Walk,
-    Run,
-    Jump,
-    Fall,
-    Wall,
-    Interact
-}
-
-public enum CharType
-{
-    Cat = 0,
-    Mouse = 1
-}
+using Object = UnityEngine.Object;
 
 public class AnimationManager : MonoBehaviour
 {
     public static AnimationManager Instance { get; private set; }
-
-    /*
-    public static List<AnimationClip> animationsCat;
-    public static List<AnimationClip> animationsMouse;
-    */
+    
     public static Dictionary<AnimationType, string> animationsCat;
     public static Dictionary<AnimationType, string> animationsMouse;
     
@@ -43,10 +23,6 @@ public class AnimationManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
         
-        /*
-        animationsCat = new List<AnimationClip>();
-        animationsMouse = new List<AnimationClip>();
-        */
         animationsCat = new Dictionary<AnimationType, string>();
         animationsMouse = new Dictionary<AnimationType, string>();
     }
@@ -54,7 +30,10 @@ public class AnimationManager : MonoBehaviour
     private void Start()
     {
         // Get all animations for Cat an Mouse
-        foreach (AnimationClip animationClip in Resources.LoadAll("Animations", typeof(AnimationClip)))
+        Object[] animations = Resources.LoadAll("Animations", typeof(AnimationClip));
+        
+        // search in animation clips for cat or mouse animations
+        foreach (AnimationClip animationClip in animations)
         {
             if (animationClip.name.Contains("Cat_"))
             {
@@ -81,6 +60,8 @@ public class AnimationManager : MonoBehaviour
                 }
             }
         }
+        print("Cat animations found: " + animationsCat.Count);
+        print("Mouse animations found: " + animationsMouse.Count);
     }
 
     public static string GetAnimationName(CharType character, AnimationType animationType)

@@ -13,7 +13,7 @@ public class Cheese : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Cheese hit " + collision.transform.name);
+        //print("Cheese hit " + collision.transform.name);
     }
 
     public void PickupCheese()

@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad9beb896a720a4c86abf6c18d6f31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fightPrefab: {fileID: 0}
 --- !u!1 &7967474422364749267
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +334,7 @@ MonoBehaviour:
   slidingDownWall: 0.1
   wallJumpAngle: -25
   wallJumpForce: 150
+  canPickupCheese: 0
   groundCheck:
   - {fileID: 7967474424084371168}
   wallCheck:
@@ -353,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabType: 1
+  cheeeeeeese: {fileID: 0}
 --- !u!95 &7967474423245811654
 Animator:
   serializedVersion: 3

@@ -7,6 +7,8 @@ public class PlayerInteract : MonoBehaviour
     private PlayerMovement movementController;
     private CapsuleCollider2D collider;
 
+    public GameObject fightPrefab;
+
     private void Awake()
     {
         characterType = GetComponentInParent<PlayerIndividualBehavior>().GetPrefabType();
@@ -23,7 +25,7 @@ public class PlayerInteract : MonoBehaviour
             if (col.transform.CompareTag("Cheese"))
             {
                 print("Mouse could pick up the cheese!");
-                movementController.SetCanPickupCheese();
+                movementController.SetCanPickupCheese(col.GetComponent<Cheese>());
             }
         }
         
@@ -38,7 +40,11 @@ public class PlayerInteract : MonoBehaviour
             // Mouse
             else if (col.transform.CompareTag("Mouse"))
             {
-                print("Cat could catch the mouse! Quick!!!!!!!!");
+                print("Cat catches the mouse!!!");
+                
+                col.gameObject.SetActive(false);
+                Instantiate(fightPrefab, transform.position, Quaternion.identity);
+                gameObject.SetActive(false);
             }
         }
     }

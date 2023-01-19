@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Other Options")] 
     [SerializeField] private bool canPickupCheese;
+    private Cheese cheeseObject;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -256,10 +257,12 @@ public class PlayerMovement : MonoBehaviour
         selectedSpeed *= horizontal > 0f ? 1 : -1;
     }
 
-    public void SetCanPickupCheese()
+    public void SetCanPickupCheese(Cheese cheese)
     {
         if (!canPickupCheese)
         {
+            print("Cheese pickup ready ...");
+            cheeseObject = cheese;
             canPickupCheese = true;
         }
     }
@@ -268,6 +271,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canPickupCheese)
         {
+            print("Cheese is lost D:");
             canPickupCheese = false;
         }
     }
@@ -281,6 +285,7 @@ public class PlayerMovement : MonoBehaviour
             // PICKUP CHEESE
             if (canPickupCheese)
             {
+                cheeseObject.PickupCheese();
                 canPickupCheese = false;
                 print("Cheese is picked up!");
             }

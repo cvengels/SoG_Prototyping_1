@@ -3,21 +3,17 @@ using UnityEngine;
 
 public class MouseHole : MonoBehaviour
 {
-    private BoxCollider2D collider;
-
-    private void Awake()
+    
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        collider = GetComponent<BoxCollider2D>();
-    }
+        print("Mousehole visited by: " + col.tag);
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        print("Mousehole entered by: " + collision.transform.name);
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        print("Mousehole was left by: " + other.transform.name);
-        other.gameObject.SetActive(false);
+        if (col.CompareTag("Mouse"))
+        {
+            if (col.GetComponentInChildren<PlayerIndividualBehavior>().HasCheese())
+            {
+                col.GetComponentInChildren<PlayerIndividualBehavior>().ThrowCheese();
+            }
+        }
     }
 }

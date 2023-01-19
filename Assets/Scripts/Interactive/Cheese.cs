@@ -15,4 +15,19 @@ public class Cheese : MonoBehaviour
     {
         print("Cheese hit " + collision.transform.name);
     }
+
+    public void PickupCheese()
+    {
+        GetComponent<Rigidbody2D>().simulated = false;
+    }
+
+    public void ThrowCheese()
+    {
+        // TODO throw cheese
+    }
+
+    public void BringCheeseHome()
+    {
+        Destroy(gameObject);
+    }
 }

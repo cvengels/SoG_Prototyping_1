@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
     private GameObject nextPrefab;
     private Transform nextPosition;
 
-    [Header("Players")]
-    public GameObject prefabCat, prefabMouse;
+    [Header("Character Prefabs")] 
+    [SerializeField] private GameObject prefabCat;
+    [SerializeField] private GameObject prefabMouse;
+    [SerializeField] private GameObject prefabFight;
     
     public GameObject[] spawnpointsCat, spawnpointsMouse;
 
@@ -37,12 +39,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] spawnpointsCheese;
 
     [Header("Global Statistics")]
+    [SerializeField] private int mouseLives = 3;
     [SerializeField] private int gameRounds;
 
-    private float cheeseSpawnRate = 0.2f;
-    public int cheesesToSpawn = 100;
-    
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -54,15 +54,12 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
         }
-    }
 
-    private void Update()
-    {
-        while (cheesesToSpawn > 0)
+        gameRounds = 1;
+
+        foreach (var cheeseSpawner in spawnpointsCheese)
         {
-            int randomSpawnPoint = Random.Range(0, spawnpointsCheese.Length - 1);
-            Instantiate(cheesePrefab, spawnpointsCheese[randomSpawnPoint].transform.position, Quaternion.identity);
-            cheesesToSpawn--;
+            Instantiate(cheesePrefab, cheeseSpawner.transform.position, Quaternion.identity);
         }
     }
 
@@ -119,6 +116,42 @@ public class GameManager : MonoBehaviour
     public GameObject[] GetSpawnsCheese()
     {
         return spawnpointsCheese;
+    }
+
+    private void FinishRound()
+    { 
+        gameRounds++;
+    }
+
+    public int GetRoundsPlayed()
+    {
+        return gameRounds;
+    }
+
+    public int GetMouseLifes()
+    {
+        return mouseLives;
+    }
+
+    public void StartFight()
+    {
+        // TODO initiate fight sequence
+    }
+
+    // If all lifes are gone, the mouse looses the round
+    public bool MouseLoosesFight()
+    {
+        mouseLives--;
+        
+        if (mouseLives <= 0)
+        {
+            FinishRound();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     private void OnEnable()

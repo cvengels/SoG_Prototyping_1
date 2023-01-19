@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(1f, 200f)] private float extraGravity = 100f;
     [SerializeField] [Range(0f, 1f)] private float jumpDampening = 0.3f;
     [SerializeField] [Range(0.5f, 0.9f)] private float moveDragInAir = 0.5f;
-    [SerializeField] [Range(0f, 0.2f)] private float coyoteTimer = 0.12f;
+    [SerializeField] [Range(0f, 0.2f)] private float coyoteTimer = 0.15f;
     private float coyoteCounter;
     private bool coyoteJumpEnabled;
     [SerializeField] [Range(0f, 1f)] private float jumpBufferTimer = .2f;
@@ -26,10 +27,13 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpBufferEnabled;
 
     [Header("Wall Behavior")]
-    [SerializeField] [Range(0.1f, 10f)] private float slidingDownWall = 1f;
+    [SerializeField] [Range(0.1f, 10f)] private float slidingDownWall = 2f;
     [SerializeField] [Range(90f, -90f)] private float wallJumpAngle = 20f;
-    [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 1f;
+    [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 75f;
     private bool wallJumpEnabled, wallJumpPerforming;
+
+    [Header("Other Options")] 
+    [SerializeField] private bool canPickupCheese;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -66,10 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // TODO fix jump buffer
-        jumpBufferEnabled = false;
-        
-        IsTouchingAnything();
+        IsTouchingLevelGeometry();
         AllignWallJumpTarget();
         
         // check if coyote jump can be performed
@@ -202,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         return playerIndex;
     }
 
-    private void IsTouchingAnything()
+    private void IsTouchingLevelGeometry()
     {
         isOnFloor = false;
         isOnWall = false;
@@ -255,42 +256,72 @@ public class PlayerMovement : MonoBehaviour
         selectedSpeed *= horizontal > 0f ? 1 : -1;
     }
 
+    public void SetCanPickupCheese()
+    {
+        if (!canPickupCheese)
+        {
+            canPickupCheese = true;
+        }
+    }
+    
+    public void SetCanNotPickupCheese()
+    {
+        if (canPickupCheese)
+        {
+            canPickupCheese = false;
+        }
+    }
+
     public void SetAction(bool actionTriggered)
     {
         // Action button pressed
         if (actionTriggered)
         {
-            // On floor
-            if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
-            {
-                // Disable jump buffs
-                coyoteJumpEnabled = false;
-                jumpBufferEnabled = false;
-                
-                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
-            }
 
-            // In air
+            // PICKUP CHEESE
+            if (canPickupCheese)
+            {
+                canPickupCheese = false;
+                print("Cheese is picked up!");
+            }
             else
             {
-                // On wall
-                if (isOnWall)
+
+                // +++ JUMPING LOGIC +++
+                // On floor
+                if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
                 {
-                    // Wall jump
-                    Vector2 wallJumpDirection = (wallJumpTarget.transform.position - rotationCenter.transform.position).normalized;
-                    playerRB.velocity = wallJumpDirection * wallJumpForce;
+                    // Disable jump buffs
+                    coyoteJumpEnabled = false;
+                    jumpBufferEnabled = false;
+
+                    playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
                 }
-                // Not on wall
+
+                // In air
                 else
                 {
-                    // Reset jump timer
-                    if (!jumpBufferEnabled)
+                    // On wall
+                    if (isOnWall)
                     {
-                        jumpBufferEnabled = true;
-                        jumpBufferCounter = jumpBufferTimer;
+                        // Wall jump
+                        Vector2 wallJumpDirection =
+                            (wallJumpTarget.transform.position - rotationCenter.transform.position).normalized;
+                        playerRB.velocity = wallJumpDirection * wallJumpForce;
                     }
-                    
-                    playerRB.velocity = new Vector2(Mathf.Lerp(playerRB.velocity.x, selectedSpeed, moveDragInAir), playerRB.velocity.y);
+                    // Not on wall
+                    else
+                    {
+                        // Reset jump timer
+                        if (!jumpBufferEnabled)
+                        {
+                            jumpBufferEnabled = true;
+                            jumpBufferCounter = jumpBufferTimer;
+                        }
+
+                        playerRB.velocity = new Vector2(Mathf.Lerp(playerRB.velocity.x, selectedSpeed, moveDragInAir),
+                            playerRB.velocity.y);
+                    }
                 }
             }
         }

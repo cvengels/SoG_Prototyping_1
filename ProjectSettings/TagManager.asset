@@ -6,6 +6,10 @@ TagManager:
   tags:
   - SpawnPoint
   - InteractiveObjects
+  - Cheese
+  - Hole
+  - Cat
+  - Mouse
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6578880698853408284}
   - component: {fileID: 1835432525128437707}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 161923832186659374}
   m_Layer: 8
   m_Name: MouseHole
-  m_TagString: InteractiveObjects
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!61 &161923832186659374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,10 +160,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2}
+  m_Offset: {x: 0, y: 2.125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -174,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 4}
+  m_Size: {x: 2.5, y: 4.25}
   m_EdgeRadius: 0
 --- !u!1 &5633801522391204765
 GameObject:
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919105388959338017}
   - component: {fileID: 5164400298604803062}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

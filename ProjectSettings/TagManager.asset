@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
+  - InteractiveObjects
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - Floor
   - Wall
-  - 
+  - InteractiveObjects
   - 
   - 
   - 
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 2276980253
+    locked: 0
+  - name: InteractiveObjects
+    uniqueID: 350474465
     locked: 0
   - name: Players
     uniqueID: 3808071739

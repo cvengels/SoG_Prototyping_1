@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public enum AnimationType
 {
@@ -35,9 +36,12 @@ public class GameManager : MonoBehaviour
     public GameObject cheesePrefab;
     public GameObject[] spawnpointsCheese;
 
-    [Header("")]
+    [Header("Global Statistics")]
     [SerializeField] private int gameRounds;
 
+    private float cheeseSpawnRate = 0.2f;
+    public int cheesesToSpawn = 100;
+    
     
     private void Awake()
     {
@@ -52,20 +56,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+    private void Update()
+    {
+        while (cheesesToSpawn > 0)
+        {
+            int randomSpawnPoint = Random.Range(0, spawnpointsCheese.Length - 1);
+            Instantiate(cheesePrefab, spawnpointsCheese[randomSpawnPoint].transform.position, Quaternion.identity);
+            cheesesToSpawn--;
+        }
+    }
+
+
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
         switch (newPlayer.playerIndex)
         {
             case 0:
-            nextPrefab = prefabCat;
-            nextPosition = spawnpointsCat[0].transform;
+            nextPrefab = prefabMouse;
+            nextPosition = spawnpointsMouse[0].transform;
             break;
             
             case 1:
-            nextPrefab = prefabMouse;
-            nextPosition = spawnpointsMouse[0].transform;
+            nextPrefab = prefabCat;
+            nextPosition = spawnpointsCat[0].transform;
             break;
         }
     }

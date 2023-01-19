@@ -164,9 +164,9 @@ GameObject:
   - component: {fileID: 790950527776462971}
   - component: {fileID: 790950527776462970}
   - component: {fileID: 790950527776462973}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PrefabSurrogate
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,6 +201,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c549c0cd0ffa0d43be8e81f20365295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadZone: 0.2
+  characterRunThresholdJoystick: 0.75
+  walkSpeed: 8
+  runSpeed: 45
+  moveDragOnFloor: 0.5
+  jumpHeight: 50
+  extraGravity: 100
+  jumpDampening: 0.3
+  moveDragInAir: 0.5
+  coyoteTimer: 0.12
+  jumpBufferTimer: 0.2
+  slidingDownWall: 1
+  wallJumpAngle: 0
+  wallJumpForce: 1
   groundCheck:
   - {fileID: 790950526561162879}
   wallCheck:
@@ -208,16 +222,6 @@ MonoBehaviour:
   - {fileID: 790950526179547606}
   rotationCenter: {fileID: 790950527613093749}
   wallJumpTarget: {fileID: 790950527770095172}
-  deadZone: 0.2
-  characterRunThresholdJoystick: 0.75
-  walkSpeed: 8
-  runSpeed: 45
-  jumpHeight: 50
-  extraGravity: 100
-  jumpDampening: 0.3
-  slidingDownWall: 1
-  wallJumpAngle: 0
-  wallJumpForce: 1
 --- !u!212 &790950527776462971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -256,7 +260,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -486895557
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 0.07544422, g: 0, b: 1, a: 1}

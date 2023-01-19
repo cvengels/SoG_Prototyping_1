@@ -11,17 +11,26 @@ public class PlayerMovement : MonoBehaviour
     [Header("Horizontal Movement")]
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float runSpeed = 45f;
+    [SerializeField] [Range(0.5f, 0.9f)] private float moveDragOnFloor = 0.5f;
 
-    [Header("Vertical Movement")] 
+    [Header("Jumping & V. Movement")] 
     [SerializeField] [Range(1f, 100f)] private float jumpHeight = 50f;
     [SerializeField] [Range(1f, 200f)] private float extraGravity = 100f;
     [SerializeField] [Range(0f, 1f)] private float jumpDampening = 0.3f;
+    [SerializeField] [Range(0.5f, 0.9f)] private float moveDragInAir = 0.5f;
+    [SerializeField] [Range(0f, 0.2f)] private float coyoteTimer = 0.12f;
+    private float coyoteCounter;
+    private bool coyoteJumpEnabled;
+    [SerializeField] [Range(0f, 1f)] private float jumpBufferTimer = .2f;
+    private float jumpBufferCounter;
+    private bool jumpBufferEnabled;
 
     [Header("Wall Behavior")]
     [SerializeField] [Range(0.1f, 10f)] private float slidingDownWall = 1f;
-    [SerializeField] [Range(-90f, 90f)] private float wallJumpAngle = 0f;
-    [SerializeField] [Range(1f, 50f)] private float wallJumpForce = 1f;
-    
+    [SerializeField] [Range(90f, -90f)] private float wallJumpAngle = 20f;
+    [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 1f;
+    private bool wallJumpEnabled, wallJumpPerforming;
+
     private Rigidbody2D playerRB;
     private Animator animator;
     private AnimationType currentAnimation;
@@ -57,15 +66,73 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // TODO fix jump buffer
+        jumpBufferEnabled = false;
+        
         IsTouchingAnything();
-        RotateWallJumpTarget();
-
-        if (isOnWall && !isOnFloor && playerRB.velocity.y < 0f)
+        AllignWallJumpTarget();
+        
+        // check if coyote jump can be performed
+        if (isOnFloor)
         {
-            playerRB.velocity = new Vector2(0f, slidingDownWall * -1);
+            coyoteJumpEnabled = true;
+            coyoteCounter = coyoteTimer;
+        }
+        
+        // in air
+        else 
+        {
+            // Coyote jump check
+            if (coyoteJumpEnabled)
+            {
+                coyoteCounter -= Time.deltaTime;
+            
+                if (coyoteCounter < 0f) 
+                {
+                    coyoteJumpEnabled = false;
+                }
+            }
+            
+            // Jump buffer check
+            if (jumpBufferEnabled)
+            {
+                jumpBufferCounter -= Time.deltaTime;
+                
+                if (jumpBufferCounter < 0f)
+                {
+                    jumpBufferEnabled = false;
+                }
+            }
+        }
+        
+        // If moving towards wall while hanging, slide down slowly
+        if (isOnWall && !isOnFloor && playerRB.velocity.y < 0f && (selectedSpeed * transform.localScale.x) > 0f)
+        {
+            playerRB.velocity = new Vector2(playerRB.velocity.x, slidingDownWall * -1);
+            wallJumpEnabled = true;
+        }
+        else
+        {
+            wallJumpEnabled = false;
         }
 
-        playerRB.velocity = new Vector2(selectedSpeed, playerRB.velocity.y);
+        // if player moves down after wall jump, deactivate this mode
+        if (wallJumpPerforming && playerRB.velocity.y < 1f)
+        {
+            wallJumpPerforming = false;
+        }
+        
+        // drag while moving
+        float dragFactor;
+        if (isOnFloor)
+        {
+            dragFactor = moveDragOnFloor;
+        }
+        else
+        {
+            dragFactor = moveDragInAir;
+        }
+        playerRB.velocity = new Vector2(Mathf.Lerp(selectedSpeed, playerRB.velocity.x, dragFactor), playerRB.velocity.y);
 
         if (selectedSpeed > 0f)
         {
@@ -90,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CharType character = individualBehavior.GetPrefabType();
         
-        if (isOnWall && !isOnFloor)
+        if (!isOnFloor && isOnWall && selectedSpeed * transform.localScale.x > 0f)
         {
             ChangeAnimationState(character, AnimationType.Wall);
             return;
@@ -119,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
         {
             ChangeAnimationState(character, AnimationType.Jump);
         }
-        else if (playerRB.velocity.y < 0f)
+        else if (playerRB.velocity.y < 1f)
         {
             ChangeAnimationState(character, AnimationType.Fall);
         }
@@ -165,8 +232,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Movement
     public void SetMovement(Vector2 movementVector)
     {
+        // Horizontal movement
         horizontal = Mathf.Clamp(movementVector.x, -1f, 1f);
 
         if (Mathf.Abs(horizontal) > deadZone)
@@ -191,21 +260,37 @@ public class PlayerMovement : MonoBehaviour
         // Action button pressed
         if (actionTriggered)
         {
-            // on floor
-            if (isOnFloor)
+            // On floor
+            if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
             {
+                // Disable jump buffs
+                coyoteJumpEnabled = false;
+                jumpBufferEnabled = false;
+                
                 playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
             }
 
-            // in air
+            // In air
             else
             {
-                // on wall
+                // On wall
                 if (isOnWall)
                 {
                     // Wall jump
-                    Vector2 wallJumpDirection = (rotationCenter.transform.position - wallJumpTarget.transform.position).normalized;
-                    playerRB.AddForce(wallJumpDirection * wallJumpForce * -1, ForceMode2D.Force);
+                    Vector2 wallJumpDirection = (wallJumpTarget.transform.position - rotationCenter.transform.position).normalized;
+                    playerRB.velocity = wallJumpDirection * wallJumpForce;
+                }
+                // Not on wall
+                else
+                {
+                    // Reset jump timer
+                    if (!jumpBufferEnabled)
+                    {
+                        jumpBufferEnabled = true;
+                        jumpBufferCounter = jumpBufferTimer;
+                    }
+                    
+                    playerRB.velocity = new Vector2(Mathf.Lerp(playerRB.velocity.x, selectedSpeed, moveDragInAir), playerRB.velocity.y);
                 }
             }
         }
@@ -220,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void RotateWallJumpTarget()
+    private void AllignWallJumpTarget()
     {
         rotationCenter.eulerAngles = new Vector3(0f, 0f, wallJumpAngle * transform.localScale.x);
     }

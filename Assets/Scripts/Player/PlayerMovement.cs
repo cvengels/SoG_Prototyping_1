@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Other Options")] 
     [SerializeField] private bool canPickupCheese;
-    private Cheese cheeseObject;
+    private GameObject cheeseObject;
+    public SpriteRenderer cheeseIndicator;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -52,7 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal, selectedSpeed;
 
-
+    private void OnValidate()
+    {
+        AllignWallJumpTarget();
+    }
 
     private void Awake()
     {
@@ -67,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         individualBehavior = GetComponent<PlayerIndividualBehavior>();
+        cheeseIndicator = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -257,79 +262,51 @@ public class PlayerMovement : MonoBehaviour
         selectedSpeed *= horizontal > 0f ? 1 : -1;
     }
 
-    public void SetCanPickupCheese(Cheese cheese)
-    {
-        if (!canPickupCheese)
-        {
-            print("Cheese pickup ready ...");
-            cheeseObject = cheese;
-            canPickupCheese = true;
-        }
-    }
-    
-    public void SetCanNotPickupCheese()
-    {
-        if (canPickupCheese)
-        {
-            print("Cheese is lost D:");
-            canPickupCheese = false;
-        }
-    }
-
     public void SetAction(bool actionTriggered)
     {
         // Action button pressed
         if (actionTriggered)
         {
 
-            // PICKUP CHEESE
-            if (canPickupCheese)
+
+            // +++ JUMPING LOGIC +++
+            // On floor
+            if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
             {
-                cheeseObject.PickupCheese();
-                canPickupCheese = false;
-                print("Cheese is picked up!");
+                // Disable jump buffs
+                coyoteJumpEnabled = false;
+                jumpBufferEnabled = false;
+
+                playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
             }
+
+            // In air
             else
             {
-
-                // +++ JUMPING LOGIC +++
-                // On floor
-                if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
+                // On wall
+                if (isOnWall)
                 {
-                    // Disable jump buffs
-                    coyoteJumpEnabled = false;
-                    jumpBufferEnabled = false;
-
-                    playerRB.velocity = new Vector2(playerRB.velocity.x, jumpHeight);
+                    // Wall jump
+                    Vector2 wallJumpDirection =
+                        (wallJumpTarget.transform.position - rotationCenter.transform.position).normalized;
+                    playerRB.velocity = wallJumpDirection * wallJumpForce;
                 }
-
-                // In air
+                // Not on wall
                 else
                 {
-                    // On wall
-                    if (isOnWall)
+                    // Reset jump timer
+                    if (!jumpBufferEnabled)
                     {
-                        // Wall jump
-                        Vector2 wallJumpDirection =
-                            (wallJumpTarget.transform.position - rotationCenter.transform.position).normalized;
-                        playerRB.velocity = wallJumpDirection * wallJumpForce;
+                        jumpBufferEnabled = true;
+                        jumpBufferCounter = jumpBufferTimer;
                     }
-                    // Not on wall
-                    else
-                    {
-                        // Reset jump timer
-                        if (!jumpBufferEnabled)
-                        {
-                            jumpBufferEnabled = true;
-                            jumpBufferCounter = jumpBufferTimer;
-                        }
 
-                        playerRB.velocity = new Vector2(Mathf.Lerp(playerRB.velocity.x, selectedSpeed, moveDragInAir),
-                            playerRB.velocity.y);
-                    }
+                    playerRB.velocity = new Vector2(Mathf.Lerp(playerRB.velocity.x, selectedSpeed, moveDragInAir),
+                        playerRB.velocity.y);
                 }
             }
         }
+
 
         // Action button released
         else

@@ -8,12 +8,12 @@ public class CameraTarget : MonoBehaviour
     
     void Start()
     {
-        offset = transform.position - target.position;
+        offset = target.position - transform.position;
 
-        transform.position = target.position;
+        transform.position = target.localPosition;
     }
     
-    void Update()
+    void LateUpdate()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, smoothFactor);
     }

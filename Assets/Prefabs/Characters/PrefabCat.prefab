@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377978757672192848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4377978759103838105}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4377978758222243231}
   m_Layer: 0
-  m_Name: Center
+  m_Name: CenterWallJump
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377978758222243216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -249,9 +249,10 @@ MonoBehaviour:
   coyoteTimer: 0.15
   jumpBufferTimer: 0
   slidingDownWall: 0.1
-  wallJumpAngle: -25
+  wallJumpAngle: -90
   wallJumpForce: 150
   canPickupCheese: 0
+  cheeseIndicator: {fileID: 0}
   groundCheck:
   - {fileID: 4377978758868127395}
   wallCheck:
@@ -332,7 +333,7 @@ SpriteRenderer:
   m_SortingLayerID: -486895557
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8534452165818876897, guid: 387e7060a56fb6541b7e4e4ef7c9fc8e, type: 3}
+  m_Sprite: {fileID: -1315781865588060153, guid: 387e7060a56fb6541b7e4e4ef7c9fc8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -515,7 +516,7 @@ GameObject:
   - component: {fileID: 3472380104739899499}
   m_Layer: 8
   m_Name: InteractCollider
-  m_TagString: Player
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088b6c4d21e66be439906d27893d7ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSurrogate: {fileID: 3552837724435869939, guid: b3524199324f28048bc2bad5e61fa3f8, type: 3}
 --- !u!114 &7230012993676646075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +110,7 @@ MonoBehaviour:
     m_ActionId: 0ea7301b-2b55-4de7-bcf3-dec17bb2d0c7
     m_ActionName: UI/Action[/Keyboard/space,/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

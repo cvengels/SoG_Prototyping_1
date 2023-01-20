@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 5774458556093932917}
   m_Layer: 0
   m_Name: FightScene
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9a3b666a634be479cdb9bf6cbdc34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeForMouseToInteract: 10
+  timeForMouseToInteract: 5
   buttonPressesNeeded: 20
 --- !u!1 &5774458556460123644
 GameObject:

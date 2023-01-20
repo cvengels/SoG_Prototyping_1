@@ -12,7 +12,7 @@ public enum FightCondition
 
 public class FightControl : MonoBehaviour
 {
-    [SerializeField] private float timeForMouseToInteract = 10f;
+    [SerializeField] private float timeForMouseToInteract = 5f;
     [SerializeField] private int buttonPressesNeeded = 20;
     
 }

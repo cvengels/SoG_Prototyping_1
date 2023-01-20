@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Wall Behavior")]
     [SerializeField] [Range(0.1f, 10f)] private float slidingDownWall = 2f;
-    [SerializeField] [Range(90f, -90f)] private float wallJumpAngle = 20f;
+    [SerializeField] [Range(-90f, 90f)] private float wallJumpAngle = 20f;
     [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 75f;
     private bool wallJumpEnabled, wallJumpPerforming;
 
@@ -320,7 +320,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void AllignWallJumpTarget()
     {
-        rotationCenter.eulerAngles = new Vector3(0f, 0f, wallJumpAngle * transform.localScale.x);
+        rotationCenter.eulerAngles = new Vector3(0f, 0f, wallJumpAngle * transform.localScale.x * -1);
     }
     
     private void ChangeAnimationState(CharType characterType, AnimationType newAnimation)

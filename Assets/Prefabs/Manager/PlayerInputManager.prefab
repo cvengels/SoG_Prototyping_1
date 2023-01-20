@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7051362910684330420}
   - component: {fileID: 7051362910684330421}
-  - component: {fileID: 4215609817527572064}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -51,7 +50,7 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4215609817527572064}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SpawnManager, Assembly-CSharp
         m_MethodName: OnPlayerJoin
         m_Mode: 1
@@ -77,7 +76,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 6495796904311577909, guid: 52bbae33fbc14ae42807e53dc2c42494, type: 3}
+  m_PlayerPrefab: {fileID: 1467287987084430569, guid: a1b3aa0b482627a40a67e1468abd8a25, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 1
   m_FixedNumberOfSplitScreens: 2
@@ -87,18 +86,3 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &4215609817527572064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051362910684330422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9c1797dde729646a8fd32e853c0bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefabs:
-  - {fileID: 6495796904311577909, guid: 52bbae33fbc14ae42807e53dc2c42494, type: 3}
-  - {fileID: 3259580495083236399, guid: f63abf797f03ad640a55baf947f71bc6, type: 3}

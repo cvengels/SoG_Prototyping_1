@@ -60,8 +60,20 @@ public class AnimationManager : MonoBehaviour
                 }
             }
         }
-        print("Cat animations found: " + animationsCat.Count);
-        print("Mouse animations found: " + animationsMouse.Count);
+
+        string catAnimationNames = "", mouseAnimationNames = "";
+        foreach (var ani in animationsCat)
+        {
+            catAnimationNames += ani.Value + "   ";
+        }
+
+        foreach (var ani in animationsMouse)
+        {
+            mouseAnimationNames += ani.Value + "   ";
+        }
+        
+        print($"Cat animations found ({animationsCat.Count}):\t{catAnimationNames}");
+        print($"Mouse animations found ({animationsMouse.Count}):\t{mouseAnimationNames}");
     }
 
     public static string GetAnimationName(CharType character, AnimationType animationType)

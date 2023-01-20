@@ -5,16 +5,19 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerMovement movementController;
+    private Camera ownCamera;
 
     private void Awake()
     {
     GameObject surrogate = Instantiate(
-        GameManager.Instance.GetPrefabFromGM(),
+        GameManager.Instance.GetCharacterPrefab(),
         GameManager.Instance.GetSpawnPosition(), 
         Quaternion.identity
         );
 
         movementController = surrogate.GetComponent<PlayerMovement>();
+
+        ownCamera = GetComponent<Camera>();
     }
 
     public void OnMove(InputAction.CallbackContext context)

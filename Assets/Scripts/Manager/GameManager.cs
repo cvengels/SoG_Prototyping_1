@@ -1,24 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using Random = UnityEngine.Random;
-
-public enum AnimationType
-{
-    Idle,
-    Walk,
-    Run,
-    Jump,
-    Fall,
-    Wall,
-    Interact
-}
-
-public enum CharType
-{
-    Cat = 0,
-    Mouse = 1
-}
 
 public class GameManager : MonoBehaviour
 {
@@ -34,16 +18,22 @@ public class GameManager : MonoBehaviour
     
     public GameObject[] spawnpointsCat, spawnpointsMouse;
 
-    [Header("Interactive Objects")]
-    public GameObject cheesePrefab;
-    public GameObject[] spawnpointsCheese;
+    [Header("Interactive Objects")] 
+    [SerializeField] private GameObject prefabCheese;
+
+    [SerializeField] private List<CheeseSpawnPoint> cheeseSpawner;
 
     [Header("Global Statistics")]
-    [SerializeField] private int mouseLives = 3;
     [SerializeField] private int gameRounds;
 
-
-    private void Awake()
+    public static UnityEvent<CheeseSpawnPoint> CheeseSp;
+    
+    private Camera mainCamera, firstPlayer, secondPlayer;
+    public static UnityEvent<Camera> AddPlayerCamera;
+    
+    
+    
+        private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -54,38 +44,29 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
         }
-
-        gameRounds = 1;
-
-        foreach (var cheeseSpawner in spawnpointsCheese)
-        {
-            Instantiate(cheesePrefab, cheeseSpawner.transform.position, Quaternion.identity);
-        }
     }
-
-
+        
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
         switch (newPlayer.playerIndex)
         {
             case 0:
-            nextPrefab = prefabMouse;
-            nextPosition = spawnpointsMouse[0].transform;
+            nextPrefab = prefabCat;
+            nextPosition = spawnpointsCat[0].transform;
             break;
             
             case 1:
             nextPrefab = prefabCat;
-            nextPosition = spawnpointsCat[0].transform;
+            nextPosition = spawnpointsMouse[0].transform;
             break;
         }
     }
 
-    public GameObject GetPrefabFromGM()
+    public GameObject GetCharacterPrefab()
     {
         return nextPrefab;
     }
-
     
     public void OnPlayerLeft(PlayerInput playerLeft)
     {
@@ -97,63 +78,8 @@ public class GameManager : MonoBehaviour
     {
         return nextPosition.position;
     }
-
-    public GameObject GetCatPrefab()
-    {
-        return prefabCat;
-    }
-
-    public GameObject GetMousePrefab()
-    {
-        return prefabMouse;
-    }
-
-    public GameObject GetCheesePrefab()
-    {
-        return cheesePrefab;
-    }
-
-    public GameObject[] GetSpawnsCheese()
-    {
-        return spawnpointsCheese;
-    }
-
-    private void FinishRound()
-    { 
-        gameRounds++;
-    }
-
-    public int GetRoundsPlayed()
-    {
-        return gameRounds;
-    }
-
-    public int GetMouseLifes()
-    {
-        return mouseLives;
-    }
-
-    public void StartFight()
-    {
-        // TODO initiate fight sequence
-    }
-
-    // If all lifes are gone, the mouse looses the round
-    public bool MouseLoosesFight()
-    {
-        mouseLives--;
-        
-        if (mouseLives <= 0)
-        {
-            FinishRound();
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
     
+
     private void OnEnable()
     {
         if (PlayerInputManager.instance != null)

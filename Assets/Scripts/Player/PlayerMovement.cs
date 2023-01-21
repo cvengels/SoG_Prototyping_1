@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         IsTouchingLevelGeometry();
-        AllignWallJumpTarget();
         
         // check if coyote jump can be performed
         if (isOnFloor)

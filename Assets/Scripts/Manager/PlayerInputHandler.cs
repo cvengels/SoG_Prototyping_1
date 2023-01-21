@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,22 +8,24 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-    GameObject surrogate = Instantiate(
-        GameManager.Instance.GetCharacterPrefab(),
-        GameManager.Instance.GetSpawnPosition(), 
-        Quaternion.identity
-        );
-
-        movementController = surrogate.GetComponent<PlayerMovement>();
-
         ownCamera = GetComponent<Camera>();
     }
 
+    
+    public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spownPosition)
+    {
+        GameObject surrogate = Instantiate(characterPrefab, spownPosition.transform.position, Quaternion.identity);
+        
+        movementController = surrogate.GetComponent<PlayerMovement>();
+    }
+
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         movementController?.SetMovement(context.ReadValue<Vector2>());
     }
 
+    
     public void OnAction(InputAction.CallbackContext context)
     {
         if (context.performed)

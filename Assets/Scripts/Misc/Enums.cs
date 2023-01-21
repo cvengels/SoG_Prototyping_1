@@ -18,6 +18,13 @@ public enum CharType
     Mouse
 }
 
+public enum SpawnPointType
+{
+    Cat,
+    Mouse,
+    Cheese
+}
+
 public enum GameState
 {
     MainMenu,

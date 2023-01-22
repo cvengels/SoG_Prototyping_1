@@ -1,7 +1,4 @@
-using System;
-using System.Net;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,9 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 75f;
     private bool wallJumpEnabled, wallJumpPerforming;
 
-    [Header("Other Options")] 
-    [SerializeField] private bool canPickupCheese;
-    private GameObject cheeseObject;
+    [Header("Other Options")]
     public SpriteRenderer cheeseIndicator;
 
     private Rigidbody2D playerRB;

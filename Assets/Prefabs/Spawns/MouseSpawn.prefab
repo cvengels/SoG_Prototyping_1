@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: MouseSpawn
   m_TagString: SpawnPoint
-  m_Icon: {fileID: 2800000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  m_Icon: {fileID: 2800000, guid: 696a8989683aa4a4ebc0e9491e8f819a, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

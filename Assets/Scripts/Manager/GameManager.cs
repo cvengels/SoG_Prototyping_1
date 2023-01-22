@@ -1,34 +1,38 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private GameObject nextPrefab;
-    private Transform nextSpawnPosition;
+    private Thread checkDisplays;
+    private int displaysFound;
+    public event Action<int> DisplaysChanged;
+    
+    private SpawnPoint nextSpawnPosition;
+    private PlayerInputManager playerInputManager;
 
-    [Header("Character Prefabs")] 
+    [Header("Character Prefabs")]
     [SerializeField] private GameObject prefabCat;
     [SerializeField] private GameObject prefabMouse;
     [SerializeField] private GameObject prefabFight;
 
-    [Header("Interactive Objects")] 
-    [SerializeField] private GameObject prefabCheese;
-    
-    [Header("Spawn Points")]
-    [SerializeField] private List<SpawnPoint> spawnerList;
+    [Header("Interactive Objects")] [SerializeField]
+    private GameObject prefabCheese;
 
-    [Header("Global Statistics")]
-    [SerializeField] private int gameRounds;
-    
-    public static UnityEvent<Camera> AddPlayerCamera;
-    
-    
-        private void Awake()
+    [Header("Spawn Points")] [SerializeField]
+    private List<SpawnPoint> spawnerList;
+
+    [Header("Global Statistics")] [SerializeField]
+    private int gameRounds;
+
+
+    private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -39,48 +43,83 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(Instance);
         }
+        
+        // Initial display configuration
+        ChangeDisplayConfiguration(Display.displays.Length < 2);
+        
+        // Start display control thread
+        checkDisplays = new Thread(SearchForDisplayChange);
+
+        // Find player input manager
+        playerInputManager = FindObjectOfType<PlayerInputManager>();
 
         // Find all spawn points
         AutoFillCollectibles();
     }
-        
+
+    private void Start()
+    {
+        checkDisplays.Start();
+    }
+
+
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
-        
-        
+
+        if (playerInputManager.playerCount == 1)
+        {
+            Camera.main.enabled = false;
+            newPlayer.GetComponent<Camera>().targetDisplay = 0;
+        }
+
+        if (playerInputManager.playerCount == 2)
+        {
+            newPlayer.GetComponent<Camera>().targetDisplay = 1;
+        }
+
         switch (newPlayer.playerIndex)
         {
             case 0:
-            nextPrefab = prefabCat;
-            SpawnPoint[] catSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Cat).ToArray();
-            nextSpawnPosition = catSpawnPoints[Random.Range(0, catSpawnPoints.Length -1)].transform;
-            Instantiate(nextPrefab, nextSpawnPosition.position, Quaternion.identity);
+                SpawnPoint[] catSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Cat).ToArray();
+            nextSpawnPosition = catSpawnPoints[Random.Range(0, catSpawnPoints.Length -1)];
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
             break;
             
             case 1:
-            nextPrefab = prefabMouse;
-            SpawnPoint[] mouseSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Mouse).ToArray();
-            nextSpawnPosition = mouseSpawnPoints[Random.Range(0, mouseSpawnPoints.Length -1)].transform;
-            Instantiate(nextPrefab, nextSpawnPosition.position, Quaternion.identity);
+                SpawnPoint[] mouseSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Mouse).ToArray();
+            nextSpawnPosition = mouseSpawnPoints[Random.Range(0, mouseSpawnPoints.Length -1)];
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
             break;
         }
     }
 
-    public GameObject GetCharacterPrefab()
-    {
-        return nextPrefab;
-    }
     
     public void OnPlayerLeft(PlayerInput playerLeft)
     {
         print("Player left (ID: " + playerLeft.playerIndex + ")");
         Destroy(playerLeft);
+        
+        if (playerInputManager.playerCount == 0)
+        {
+            Camera.main.enabled = true;
+        }
+        
+    }
+    
+    public GameObject GetCharacterPrefab()
+    {
+        if (playerInputManager.playerCount == 2)
+        {
+            return prefabCat;
+        }
+        
+        return prefabMouse;
     }
 
-    public Vector2 GetSpawnPosition()
+    public SpawnPoint GetSpawnPosition()
     {
-        return nextSpawnPosition.position;
+        return nextSpawnPosition;
     }
     
     
@@ -96,7 +135,6 @@ public class GameManager : MonoBehaviour
             {
                 spawners += spawner.name + "   ";
             }
-            print("Spawner list: " + spawners);
         }
         else
         {
@@ -122,4 +160,31 @@ public class GameManager : MonoBehaviour
             PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
         }
     }
+    
+    
+    private void SearchForDisplayChange()
+    {
+        Thread.Sleep(1000);
+        
+        // Search for new Displays
+        if (Display.displays.Length != displaysFound)
+        {
+            displaysFound = Display.displays.Length;
+            if (displaysFound == 2)
+            {
+                Display.displays[1].Activate();
+                ChangeDisplayConfiguration(false);
+            }
+            else
+            {
+                ChangeDisplayConfiguration(true);
+            }
+        }
+    }
+
+    private void ChangeDisplayConfiguration(bool useSplitscreen)
+    {
+        playerInputManager.splitScreen = useSplitscreen;
+    }
+    
 }

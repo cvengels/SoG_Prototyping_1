@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 8
   m_Name: PrefabCheese
   m_TagString: Cheese
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: b8ebd885b252e0b4b8ba1ff6eb507128, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

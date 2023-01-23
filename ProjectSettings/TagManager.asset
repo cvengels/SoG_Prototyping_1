@@ -12,6 +12,7 @@ TagManager:
   - Mouse
   - Player1Cam
   - Player2Cam
+  - FightScene
   layers:
   - Default
   - TransparentFX

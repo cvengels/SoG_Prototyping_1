@@ -34,6 +34,7 @@ public enum GameState
     Options,
     Credits,
     LevelRunning,
+    Fight,
     LevelEnd,
     Pause
 }

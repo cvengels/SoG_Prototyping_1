@@ -740,7 +740,7 @@ Transform:
   - {fileID: 1794086561}
   - {fileID: 588916485}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &244198419
 PrefabInstance:
@@ -1084,6 +1084,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8583384775250578290, guid: ba4f435dd3a221e4fbd6290b6e1cd423, type: 3}
   m_PrefabInstance: {fileID: 588916482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &624787490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5774458556093932907, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+  m_PrefabInstance: {fileID: 956427907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677122639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1359,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 715032265067773195, guid: c6e97688ed8c636438275ebbc27b51b2, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 715032265067773195, guid: c6e97688ed8c636438275ebbc27b51b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1571,6 +1576,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.2703886, y: 0.23890114}
   m_EdgeRadius: 0
+--- !u!1001 &956427907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5774458556093932907, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_Name
+      value: FightScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774458556093932916, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e6a7be9c3f022904f93fd844a9d1e48e, type: 3}
 --- !u!1001 &958745713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2278,6 +2340,8 @@ MonoBehaviour:
     _prefab: Assets/Prefabs/Manager/AnimationManager.prefab
   - _gameObject: {fileID: 2067573870}
     _prefab: Assets/Prefabs/Manager/PlayerInputManager.prefab
+  - _gameObject: {fileID: 624787490}
+    _prefab: Assets/Prefabs/Characters/FightScene.prefab
   - _gameObject: {fileID: 1990363885}
     _prefab: Assets/Prefabs/Manager/PostProcessing.prefab
   - _gameObject: {fileID: 958745714}
@@ -2306,7 +2370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1594538681
 PrefabInstance:

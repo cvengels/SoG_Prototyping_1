@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         
-        floorLayer = LayerMask.GetMask("Floor");
+        floorLayer = LayerMask.GetMask("Floor", "InteractiveObjects");
         wallLayer = LayerMask.GetMask("Wall");
         if (groundCheck.Length == 0 || wallCheck.Length == 0)
         {

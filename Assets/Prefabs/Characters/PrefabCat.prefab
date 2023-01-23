@@ -56,7 +56,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4377978758222243216}
-  m_LocalRotation: {x: -0, y: -0, z: -0.1736482, w: 0.9848078}
+  m_LocalRotation: {x: -0, y: -0, z: -0.08715574, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -206,19 +206,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c549c0cd0ffa0d43be8e81f20365295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadZone: 0.2
-  characterRunThresholdJoystick: 0.75
+  deadZone: 0.15
+  characterRunThresholdJoystick: 0.9
   walkSpeed: 8
-  runSpeed: 45
-  moveDragOnFloor: 0.5
+  runSpeed: 30
+  moveDragOnFloor: 0.6
   jumpHeight: 50
   extraGravity: 100
-  jumpDampening: 0.3
-  moveDragInAir: 0.5
-  coyoteTimer: 0.15
-  jumpBufferTimer: 0
-  slidingDownWall: 0.1
-  wallJumpAngle: 20
+  jumpDampening: 0.25
+  moveDragInAir: 0.6
+  coyoteTimer: 0.165
+  jumpBufferTimer: 0.1
+  slidingDownWall: 0.75
+  wallJumpAngle: 10
   wallJumpForce: 150
   groundCheck:
   - {fileID: 4377978758868127395}
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 3501297456613791641}
   - component: {fileID: 9137642965211720483}
   - component: {fileID: 3472380104739899499}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: InteractCollider
   m_TagString: Cat
   m_Icon: {fileID: 0}

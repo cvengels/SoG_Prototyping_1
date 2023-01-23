@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    private GameObject surrogate;
     private PlayerMovement movementController;
 
     public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spawnPosition)
     {
         name = "Surrogate of " + characterPrefab.GetComponent<PlayerIndividualBehavior>().GetPrefabType().ToString();
-        GameObject surrogate = Instantiate(characterPrefab, spawnPosition.transform.position, Quaternion.identity);
+        surrogate = Instantiate(characterPrefab, spawnPosition.transform.position, Quaternion.identity);
         if (surrogate != null)
         {
             print($"Character {name} spawned at {spawnPosition.name}");

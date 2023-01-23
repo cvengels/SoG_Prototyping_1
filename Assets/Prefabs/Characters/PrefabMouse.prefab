@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 31539015788284748}
   - component: {fileID: 4562259716597473232}
   - component: {fileID: 5410028080260906740}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: InteractCollider
   m_TagString: Mouse
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7967474423245811674}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &4562259716597473232
 CapsuleCollider2D:
@@ -204,7 +204,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 7967474423245811674}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8640611154967999371
 SpriteRenderer:
@@ -352,8 +352,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2023706430630727661}
   - {fileID: 31539015788284748}
+  - {fileID: 2023706430630727661}
   - {fileID: 7967474422364749276}
   - {fileID: 4027227709447016237}
   m_Father: {fileID: 0}
@@ -371,27 +371,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c549c0cd0ffa0d43be8e81f20365295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadZone: 0.2
-  characterRunThresholdJoystick: 0.75
+  deadZone: 0.15
+  characterRunThresholdJoystick: 0.9
   walkSpeed: 8
-  runSpeed: 45
-  moveDragOnFloor: 0.5
+  runSpeed: 30
+  moveDragOnFloor: 0.6
   jumpHeight: 50
   extraGravity: 100
-  jumpDampening: 0.3
-  moveDragInAir: 0.5
-  coyoteTimer: 0.15
+  jumpDampening: 0.25
+  moveDragInAir: 0.6
+  coyoteTimer: 0.165
   jumpBufferTimer: 0
-  slidingDownWall: 0.1
-  wallJumpAngle: 20
+  slidingDownWall: 0.75
+  wallJumpAngle: 10
   wallJumpForce: 150
   groundCheck:
   - {fileID: 7967474424084371168}
   wallCheck:
   - {fileID: 7967474424009967036}
   - {fileID: 7967474422651516953}
-  rotationCenter: {fileID: 7967474422364749276}
-  wallJumpTarget: {fileID: 7967474423381194262}
+  rotationCenter: {fileID: 7967474423381194262}
+  wallJumpTarget: {fileID: 8874306065900457584}
 --- !u!114 &7967474423245811675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +545,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7967474423381194261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08715577, w: 0.9961948}
   m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

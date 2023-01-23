@@ -15,7 +15,7 @@ GameObject:
   m_TagString: SpawnPoint
   m_Icon: {fileID: 2800000, guid: 01151b4fd90018d449fbe0532a1deee8, type: 3}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8138494440417661703
 Transform:

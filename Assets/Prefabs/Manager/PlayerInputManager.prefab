@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnPlayerJoined
         m_Mode: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: OnPlayerLeft
         m_Mode: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 1467287987084430569, guid: a1b3aa0b482627a40a67e1468abd8a25, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
+  m_FixedNumberOfSplitScreens: 2
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0

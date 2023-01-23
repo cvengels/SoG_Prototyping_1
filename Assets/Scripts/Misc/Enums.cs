@@ -13,6 +13,7 @@ public enum AnimationType
     Win
 }
 
+// *** Order in CharType and SpawnPointType must be equal!!! ***
 public enum CharType
 {
     Cat,

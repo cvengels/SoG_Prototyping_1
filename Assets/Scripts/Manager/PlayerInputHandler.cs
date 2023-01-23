@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

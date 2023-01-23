@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using Cinemachine;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -14,20 +14,20 @@ public class GameManager : MonoBehaviour
     private SpawnPoint nextSpawnPosition;
     private PlayerInputManager playerInputManager;
 
-    [Header("Character Prefabs")] [SerializeField]
-    private GameObject prefabCat;
-
+    [Header("Character Prefabs")] 
+    [SerializeField] private GameObject prefabCat;
     [SerializeField] private GameObject prefabMouse;
     [SerializeField] private GameObject prefabFight;
 
-    [Header("Interactive Objects")] [SerializeField]
-    private GameObject prefabCheese;
+    [Header("Interactive Objects")] 
+    [SerializeField] private GameObject prefabCheese;
 
-    [Header("Spawn Points")] [SerializeField]
-    private List<SpawnPoint> spawnerList;
+    [Header("Spawn Points")] 
+    [SerializeField] private List<SpawnPoint> spawnerList;
 
-    [Header("Global Statistics")] [SerializeField]
-    private int gameRounds;
+    [Header("Global Statistics")] 
+    [SerializeField] private CharType playerOneCharacter, playerTwoCharacter;
+    [SerializeField] private int gameRounds;
 
 
     private void Awake()
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
         // Find all spawn points
         AutoFillCollectibles();
+
+        SetPlayerCharactersByRound();
     }
 
     private void CheckForSecondScreen()
@@ -64,7 +66,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
+    // Set player characters by game round number.
+    private void SetPlayerCharactersByRound()
+    {
+        if (gameRounds % 2 == 0)
+        {
+            playerOneCharacter = CharType.Cat;
+            playerTwoCharacter = CharType.Mouse;
+        }
+        else
+        {
+            (playerOneCharacter, playerTwoCharacter) = (playerTwoCharacter, playerOneCharacter);
+        }
+    }
 
+    // TODO implement SetPlayerCharactersByRound() outcome into player spawn
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
@@ -123,6 +140,23 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void CheckIfPlayerIsInVoid()
+    {
+        if (PlayerInput.all.Count > 0)
+        {
+            foreach (var player in PlayerInput.all)
+            {
+                if (player.transform.position.y < 10000f)
+                {
+                    CharType playerCharacter = player.GetComponentInChildren<PlayerIndividualBehavior>().GetPrefabType();
+                    SpawnPoint[] spawnPoints = spawnerList.Where(sp => (int)sp.GetSpawnType() == (int)playerCharacter).ToArray();
+                    
+                    player.transform.position = new Vector2();
+                }
+            }
+        }
+    }
+
     [ContextMenu("AutoFill Spawns")]
     public void AutoFillCollectibles()
     {
@@ -142,6 +176,49 @@ public class GameManager : MonoBehaviour
         {
             print("No spawners found");
         }
+    }
+
+    public GameObject[] GetObjectsWithLayer(string s_layerMask)
+    {
+        return FindObjectsOfType<GameObject>().Where(go => go.layer == LayerMask.NameToLayer(s_layerMask)).ToArray();
+    }
+    public GameObject[] GetObjectsWithLayer(int i_layerMask)
+    {
+        return FindObjectsOfType<GameObject>().Where(go => go.layer == i_layerMask).ToArray();
+    }
+    
+    [ContextMenu("Fix Platforms")]
+    public void RepairPlatforms()
+    {
+        int platformsFixed = 0;
+        GameObject[] platforms = GetObjectsWithLayer("Floor");
+        print($"Platforms with layer name \"Floor\" (layer {LayerMask.NameToLayer("Floor")}) found: {platforms.Length}");
+
+        foreach (var platform in platforms)
+        {
+            if (!platform.GetComponent<PlatformEffector2D>() || !platform.GetComponent<PlatformEffector2D>().enabled || !platform.GetComponent<BoxCollider2D>().usedByEffector)
+            {
+                if (!platform.GetComponent<PlatformEffector2D>())
+                {
+                    platform.AddComponent<PlatformEffector2D>();
+                    print($"Added Platform Effector 2D to {platform.name}");
+                }
+
+                if (!platform.GetComponent<PlatformEffector2D>().enabled)
+                {
+                    platform.GetComponent<PlatformEffector2D>().enabled = true;
+                    print($"Enabled Platform Effector 2D on {platform.name}");
+                }
+                if (!platform.GetComponent<BoxCollider2D>().usedByEffector)
+                {
+                    platform.GetComponent<BoxCollider2D>().usedByEffector = true;
+                    print($"Fixed Effector usage on {platform.name}");
+                }
+
+                platformsFixed++;
+            }
+        }
+        print($"Platforms fixed: {platformsFixed}");
     }
 
 

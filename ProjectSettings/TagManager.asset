@@ -10,7 +10,8 @@ TagManager:
   - Hole
   - Cat
   - Mouse
-  - PlayerCamera
+  - Player1Cam
+  - Player2Cam
   layers:
   - Default
   - TransparentFX
@@ -32,8 +33,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - P1 Cam
+  - P2 Cam
   - 
   - 
   - 

@@ -152,14 +152,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &2113917571200539083
+--- !u!1102 &2600586778509044086
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mouse_Throw
+  m_Name: Mouse_Yeet
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -207,13 +207,13 @@ AnimatorStateMachine:
     m_Position: {x: 280, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3099721838500011418}
-    m_Position: {x: 315, y: 285, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 2113917571200539083}
-    m_Position: {x: 350, y: 350, z: 0}
+    m_Position: {x: 280, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 865882326453607817}
-    m_Position: {x: 385, y: 415, z: 0}
+    m_Position: {x: 280, y: 520, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 2600586778509044086}
+    m_Position: {x: 280, y: 470, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

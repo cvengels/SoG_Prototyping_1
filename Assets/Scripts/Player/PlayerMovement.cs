@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,9 +30,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] [Range(-90f, 90f)] private float wallJumpAngle = 20f;
     [SerializeField] [Range(1f, 150f)] private float wallJumpForce = 75f;
     private bool wallJumpEnabled, wallJumpPerforming;
-
-    [Header("Other Options")]
-    public SpriteRenderer cheeseIndicator;
 
     private Rigidbody2D playerRB;
     private Animator animator;
@@ -66,7 +65,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         individualBehavior = GetComponent<PlayerIndividualBehavior>();
-        cheeseIndicator = GetComponentInChildren<SpriteRenderer>();
+
+#if UNITY_STANDALONE
+        foreach (Transform editorHelper in GetComponentsInChildren<Transform>().Where(eh => eh.CompareTag("EditorOnly")))
+        {
+            editorHelper.gameObject.SetActive(false);
+        }
+#endif
     }
 
     private void FixedUpdate()

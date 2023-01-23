@@ -1,26 +1,28 @@
 using System;
+using System.Linq;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerMovement movementController;
-    private CameraTarget cameraTarget;
 
-    public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spownPosition)
+    public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spawnPosition)
     {
         name = "Surrogate of " + characterPrefab.GetComponent<PlayerIndividualBehavior>().GetPrefabType().ToString();
-        GameObject surrogate = Instantiate(characterPrefab, spownPosition.transform.position, Quaternion.identity);
-        
-        cameraTarget = GetComponent<CameraTarget>();
-        cameraTarget.SetCameraTarget(surrogate.transform.Find("CameraTarget").position);
-        
-        if (GetComponent<PlayerInput>().camera == null)
+        GameObject surrogate = Instantiate(characterPrefab, spawnPosition.transform.position, Quaternion.identity);
+        if (surrogate != null)
         {
-            GetComponent<PlayerInput>().camera = GetComponent<Camera>();
+            print($"Character {name} spawned at {spawnPosition.name}");
         }
-        
+
         movementController = surrogate.GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        transform.position = movementController.transform.position;
     }
 
     public void OnMove(InputAction.CallbackContext context)

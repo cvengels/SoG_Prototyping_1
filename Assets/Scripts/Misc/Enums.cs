@@ -9,6 +9,7 @@ public enum AnimationType
     Wall,
     Yeet,
     Stun,
+    Sniff,
     Win
 }
 

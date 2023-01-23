@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -25,12 +26,16 @@ public class AnimationManager : MonoBehaviour
         
         animationsCat = new Dictionary<AnimationType, string>();
         animationsMouse = new Dictionary<AnimationType, string>();
+        
+        ParseAnimations();
     }
-
-    private void Start()
+    
+    
+    public static void ParseAnimations()
     {
         // Get all animations for Cat an Mouse
-        Object[] animations = Resources.LoadAll("Animations", typeof(AnimationClip));
+        List<Object> animations = Resources.LoadAll("Animations", typeof(AnimationClip)).ToList();
+        List<Object> animationsRemaining = new List<Object>(animations);
         
         // search in animation clips for cat or mouse animations
         foreach (AnimationClip animationClip in animations)
@@ -44,6 +49,7 @@ public class AnimationManager : MonoBehaviour
                         AnimationType catAnimation;
                         Enum.TryParse(possibleCatAnimation, out catAnimation);
                         animationsCat.Add(catAnimation, animationClip.name);
+                        animationsRemaining.Remove(animationClip);
                     }
                 }
             }
@@ -56,12 +62,13 @@ public class AnimationManager : MonoBehaviour
                         AnimationType mouseAnimation;
                         Enum.TryParse(possibleMouseAnimation, out mouseAnimation);
                         animationsMouse.Add(mouseAnimation, animationClip.name);
+                        animationsRemaining.Remove(animationClip);
                     }
                 }
             }
         }
 
-        string catAnimationNames = "", mouseAnimationNames = "";
+        string catAnimationNames = "", mouseAnimationNames = "", notParsedAnimations = "";
         foreach (var ani in animationsCat)
         {
             catAnimationNames += ani.Value + "   ";
@@ -71,11 +78,18 @@ public class AnimationManager : MonoBehaviour
         {
             mouseAnimationNames += ani.Value + "   ";
         }
+
+        foreach (var ani in animationsRemaining)
+        {
+            notParsedAnimations += ani.name + "   ";
+        }
         
         print($"Cat animations found ({animationsCat.Count}):\t{catAnimationNames}");
         print($"Mouse animations found ({animationsMouse.Count}):\t{mouseAnimationNames}");
+        print($"Not parsed animations ({animationsRemaining.Count}):\t{notParsedAnimations}");
     }
 
+    
     public static string GetAnimationName(CharType character, AnimationType animationType)
     {
         if (character.Equals(CharType.Cat))
@@ -91,6 +105,5 @@ public class AnimationManager : MonoBehaviour
             throw new Exception("Animation not found");
         }
     }
-    
 
 }

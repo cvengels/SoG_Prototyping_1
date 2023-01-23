@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -10,15 +11,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private Thread checkDisplays;
-    private int displaysFound;
-    public event Action<int> DisplaysChanged;
-    
     private SpawnPoint nextSpawnPosition;
     private PlayerInputManager playerInputManager;
 
-    [Header("Character Prefabs")]
-    [SerializeField] private GameObject prefabCat;
+    [Header("Character Prefabs")] [SerializeField]
+    private GameObject prefabCat;
+
     [SerializeField] private GameObject prefabMouse;
     [SerializeField] private GameObject prefabFight;
 
@@ -44,12 +42,9 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
         
-        // Initial display configuration
-        ChangeDisplayConfiguration(Display.displays.Length < 2);
+        // Setup screens
+        CheckForSecondScreen();
         
-        // Start display control thread
-        checkDisplays = new Thread(SearchForDisplayChange);
-
         // Find player input manager
         playerInputManager = FindObjectOfType<PlayerInputManager>();
 
@@ -57,9 +52,16 @@ public class GameManager : MonoBehaviour
         AutoFillCollectibles();
     }
 
-    private void Start()
+    private void CheckForSecondScreen()
     {
-        checkDisplays.Start();
+        Debug.Log ("displays connected: " + Display.displays.Length);
+        // Display.displays[0] is the primary, default display and is always ON, so start at index 1.
+        // Check if additional displays are available and activate each.
+    
+        for (int i = 1; i < Display.displays.Length; i++)
+        {
+            Display.displays[i].Activate();
+        }
     }
 
 
@@ -67,62 +69,60 @@ public class GameManager : MonoBehaviour
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
 
-        if (playerInputManager.playerCount == 1)
-        {
-            Camera.main.enabled = false;
-            newPlayer.GetComponent<Camera>().targetDisplay = 0;
-        }
-
-        if (playerInputManager.playerCount == 2)
-        {
-            newPlayer.GetComponent<Camera>().targetDisplay = 1;
-        }
-
+        GameObject newPlayerCam = null;
+        
         switch (newPlayer.playerIndex)
         {
             case 0:
+                newPlayerCam = GameObject.FindGameObjectWithTag("Player1Cam");
                 SpawnPoint[] catSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Cat).ToArray();
-            nextSpawnPosition = catSpawnPoints[Random.Range(0, catSpawnPoints.Length -1)];
+                nextSpawnPosition = catSpawnPoints[Random.Range(0, catSpawnPoints.Length - 1)];
                 newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
-            break;
-            
+                break;
+
             case 1:
+                newPlayerCam = GameObject.FindGameObjectWithTag("Player2Cam");
                 SpawnPoint[] mouseSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Mouse).ToArray();
-            nextSpawnPosition = mouseSpawnPoints[Random.Range(0, mouseSpawnPoints.Length -1)];
+                nextSpawnPosition = mouseSpawnPoints[Random.Range(0, mouseSpawnPoints.Length - 1)];
                 newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
-            break;
+                break;
+        }
+
+        if (newPlayerCam != null)
+        {
+            newPlayerCam.GetComponent<CinemachineVirtualCamera>().Follow = newPlayer.transform;
+            newPlayerCam.GetComponent<CinemachineVirtualCamera>().LookAt = newPlayer.transform;
+        }
+        else
+        {
+            print($"Camera could not be attached to Player {newPlayer.playerIndex}");
         }
     }
 
-    
+
     public void OnPlayerLeft(PlayerInput playerLeft)
     {
+
         print("Player left (ID: " + playerLeft.playerIndex + ")");
         Destroy(playerLeft);
-        
-        if (playerInputManager.playerCount == 0)
-        {
-            Camera.main.enabled = true;
-        }
-        
     }
-    
+
     public GameObject GetCharacterPrefab()
     {
         if (playerInputManager.playerCount == 2)
         {
-            return prefabCat;
+            return prefabMouse;
         }
-        
-        return prefabMouse;
+
+        return prefabCat;
     }
 
     public SpawnPoint GetSpawnPosition()
     {
         return nextSpawnPosition;
     }
-    
-    
+
+
     [ContextMenu("AutoFill Spawns")]
     public void AutoFillCollectibles()
     {
@@ -135,13 +135,15 @@ public class GameManager : MonoBehaviour
             {
                 spawners += spawner.name + "   ";
             }
+
+            print($"Spawners found ({spawnerList.Count}): {spawners}");
         }
         else
         {
             print("No spawners found");
         }
     }
-    
+
 
     private void OnEnable()
     {
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour
             PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
         }
     }
-    
+
     private void OnDisable()
     {
         if (PlayerInputManager.instance != null)
@@ -160,31 +162,5 @@ public class GameManager : MonoBehaviour
             PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
         }
     }
-    
-    
-    private void SearchForDisplayChange()
-    {
-        Thread.Sleep(1000);
-        
-        // Search for new Displays
-        if (Display.displays.Length != displaysFound)
-        {
-            displaysFound = Display.displays.Length;
-            if (displaysFound == 2)
-            {
-                Display.displays[1].Activate();
-                ChangeDisplayConfiguration(false);
-            }
-            else
-            {
-                ChangeDisplayConfiguration(true);
-            }
-        }
-    }
-
-    private void ChangeDisplayConfiguration(bool useSplitscreen)
-    {
-        playerInputManager.splitScreen = useSplitscreen;
-    }
-    
 }
+    

@@ -2007,10 +2007,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
-      propertyPath: spawnerList.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[0]
       value: 
       objectReference: {fileID: 169140192}

@@ -25,8 +25,9 @@ public class GameManager : MonoBehaviour
     [Header("Spawn Points")] 
     [SerializeField] private List<SpawnPoint> spawnerList;
 
-    [Header("Global Statistics")] 
-    [SerializeField] private CharType playerOneCharacter, playerTwoCharacter;
+    [Header("Global Statistics")]
+    [SerializeField] private CharType playerOneCharacter;
+    [SerializeField] private CharType playerTwoCharacter;
     [SerializeField] private int gameRounds;
 
 
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            (playerOneCharacter, playerTwoCharacter) = (playerTwoCharacter, playerOneCharacter);
+            playerOneCharacter = CharType.Mouse;
+            playerTwoCharacter = CharType.Cat;
         }
     }
 
@@ -92,16 +94,16 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 newPlayerCam = GameObject.FindGameObjectWithTag("Player1Cam");
-                SpawnPoint[] catSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Cat).ToArray();
-                nextSpawnPosition = catSpawnPoints[Random.Range(0, catSpawnPoints.Length - 1)];
-                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
+                SpawnPoint[] possiblePlayerOneSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)playerOneCharacter).ToArray();
+                nextSpawnPosition = possiblePlayerOneSpawnPoints[Random.Range(0, possiblePlayerOneSpawnPoints.Length - 1)];
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(playerOneCharacter), nextSpawnPosition);
                 break;
 
             case 1:
                 newPlayerCam = GameObject.FindGameObjectWithTag("Player2Cam");
-                SpawnPoint[] mouseSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == SpawnPointType.Mouse).ToArray();
-                nextSpawnPosition = mouseSpawnPoints[Random.Range(0, mouseSpawnPoints.Length - 1)];
-                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(), nextSpawnPosition);
+                SpawnPoint[] possiblePlayerTwoSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)playerTwoCharacter).ToArray();
+                nextSpawnPosition = possiblePlayerTwoSpawnPoints[Random.Range(0, possiblePlayerTwoSpawnPoints.Length - 1)];
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(playerTwoCharacter), nextSpawnPosition);
                 break;
         }
 
@@ -124,14 +126,13 @@ public class GameManager : MonoBehaviour
         Destroy(playerLeft);
     }
 
-    public GameObject GetCharacterPrefab()
+    public GameObject GetCharacterPrefab(CharType playerCharacter)
     {
-        if (playerInputManager.playerCount == 2)
+        if (playerCharacter == CharType.Cat)
         {
-            return prefabMouse;
+            return prefabCat;
         }
-
-        return prefabCat;
+        return prefabMouse;
     }
 
     public SpawnPoint GetSpawnPosition()

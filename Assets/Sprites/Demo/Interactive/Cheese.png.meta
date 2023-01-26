@@ -51,7 +51,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0.02
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -75,73 +75,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline:
-    - - {x: 615.5, y: -332.5}
-      - {x: 622.5, y: -191.5}
-      - {x: 622.5, y: 120.5}
-      - {x: 584.5, y: 337.5}
-      - {x: 569.5, y: 407.5}
-      - {x: 516.5, y: 474.5}
-      - {x: 477.5, y: 474.5}
-      - {x: 314.5, y: 409.5}
-      - {x: -622.5, y: 163.5}
-      - {x: -622.5, y: -79.5}
-      - {x: -612.5, y: -163.5}
-      - {x: -622.5, y: -341.5}
-      - {x: -622.5, y: -458.5}
-      - {x: -612.5, y: -474.5}
-      - {x: -414.5, y: -474.5}
-      - {x: 52.5, y: -438.5}
-      - {x: 367.5, y: -393.5}
-      - {x: 593.5, y: -343.5}
-    physicsShape:
-    - - {x: 622.5, y: -174.5}
-      - {x: 622.5, y: 51.5}
-      - {x: 559.5, y: 96.5}
-      - {x: 596.5, y: 161.5}
-      - {x: 583.5, y: 332.5}
-      - {x: 556.5, y: 422.5}
-      - {x: 512.5, y: 474.5}
-      - {x: 469.5, y: 474.5}
-      - {x: 41.5, y: 325.5}
-      - {x: -546.5, y: 177.5}
-      - {x: -622.5, y: 149.5}
-      - {x: -622.5, y: 66.5}
-      - {x: -610.5, y: -144.5}
-      - {x: -622.5, y: -259.5}
-      - {x: -622.5, y: -474.5}
-      - {x: -458.5, y: -474.5}
-      - {x: -95.5, y: -453.5}
-      - {x: 340.5, y: -396.5}
-      - {x: 592.5, y: -345.5}
-      - {x: 617.5, y: -301.5}
+    outline: []
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0

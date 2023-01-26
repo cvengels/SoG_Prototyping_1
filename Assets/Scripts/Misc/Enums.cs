@@ -33,8 +33,11 @@ public enum GameState
     PlayerSelect,
     Options,
     Credits,
+    LevelBegin,
     LevelRunning,
+    FightBegin,
     Fight,
+    FightEnd,
     LevelEnd,
     Pause
 }

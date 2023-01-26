@@ -1,46 +1,188 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
     private GameObject surrogate;
-    private PlayerMovement movementController;
+    private PlayerMovement playerMovementController;
+    private FightManager fightManager;
+    private CharType characterType;
 
     public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spawnPosition)
     {
-        name = "Surrogate of " + characterPrefab.GetComponent<PlayerIndividualBehavior>().GetPrefabType().ToString();
+        // Assigned player Character
+        characterType = characterPrefab.GetComponent<PlayerIndividualBehavior>().GetPrefabType();
+        name = "Surrogate of " + characterType.ToString();
         surrogate = Instantiate(characterPrefab, spawnPosition.transform.position, Quaternion.identity);
         if (surrogate != null)
         {
             print($"Character {name} spawned at {spawnPosition.name}");
         }
-
-        movementController = surrogate.GetComponent<PlayerMovement>();
+        playerMovementController = surrogate.GetComponent<PlayerMovement>();
+        // Fight manager instance
     }
 
+    public void OnGetFightToControl(FightManager fightManager)
+    {
+        this.fightManager = fightManager;
+    }
+
+
+    private void OnGameStateChanged(GameState newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                break;
+            case GameState.FightBegin:
+                surrogate.gameObject?.SetActive(false);
+                break;
+            case GameState.Fight:
+                break;
+            case GameState.FightEnd:
+                playerMovementController.transform.position = fightManager.transform.position;
+                surrogate.transform.position = fightManager.transform.position;
+                surrogate.gameObject?.SetActive(true);
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newGameState), newGameState, null);
+        }
+    }
+
+    
     private void Update()
     {
-        transform.position = movementController.transform.position;
+        switch (GameManager.Instance.GetGameState())
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                transform.position = playerMovementController.transform.position;
+                break;
+            case GameState.FightBegin:
+                break;
+            case GameState.Fight:
+                transform.position = fightManager.transform.position;
+                break;
+            case GameState.FightEnd:
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movementController?.SetMovement(context.ReadValue<Vector2>());
+        Vector2 movementDirection = context.ReadValue<Vector2>();
+        switch (GameManager.Instance.GetGameState())
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                playerMovementController?.SetMovement(movementDirection);
+                break;
+            case GameState.FightBegin:
+                break;
+            case GameState.Fight:
+                fightManager?.SetMovement(movementDirection, characterType);
+                break;
+            case GameState.FightEnd:
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
-    
     public void OnAction(InputAction.CallbackContext context)
     {
+        bool contextPerformed = false;
         if (context.performed)
         {
-            movementController?.SetAction(true);
+            contextPerformed = true;
         }
-
         if (context.canceled)
         {
-            movementController?.SetAction(false);
+            contextPerformed = false;
+        }
+        switch (GameManager.Instance.GetGameState())
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                    playerMovementController?.SetAction(contextPerformed);
+                break;
+            case GameState.FightBegin:
+                break;
+            case GameState.Fight:
+                fightManager?.SetAction(contextPerformed, characterType);
+                break;
+            case GameState.FightEnd:
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
+
+    private void OnEnable()
+    {
+        GameManager.Instance.onGameStateChanged += OnGameStateChanged;
+    }
+    
+    private void OnDisable()
+    {
+        GameManager.Instance.onGameStateChanged -= OnGameStateChanged;
+    }
 }
 

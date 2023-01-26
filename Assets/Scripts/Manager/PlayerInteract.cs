@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     private CharType characterType;
-    private CapsuleCollider2D collider;
 
     private void Awake()
     {
@@ -14,6 +13,7 @@ public class PlayerInteract : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
         // Mouse interactions
         if (characterType == CharType.Mouse)
         {
@@ -25,8 +25,12 @@ public class PlayerInteract : MonoBehaviour
         // Cat interactions
         else if (characterType == CharType.Cat)
         {
-            
-            
+            // Touches mouse
+            if (col.GetComponentInParent<PlayerIndividualBehavior>().GetPrefabType() == CharType.Mouse)
+            {
+                // Initiate fight
+                print("Jetzt gibt's aufs Maul!");
+            }
             
         }
     }

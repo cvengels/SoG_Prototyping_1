@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharType playerOneCharacter;
     [SerializeField] private CharType playerTwoCharacter;
     [SerializeField] private int gameRounds;
+    [SerializeField] private GameState currentGameState;
 
 
     private void Awake()
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
         AutoFillCollectibles();
 
         SetPlayerCharactersByRound();
+
+        currentGameState = GameState.LevelRunning;
     }
 
     private void CheckForSecondScreen()
@@ -82,6 +85,15 @@ public class GameManager : MonoBehaviour
             playerTwoCharacter = CharType.Cat;
         }
     }
+    
+
+    public event Action<GameState> onGameStateChanged;
+    
+    public GameState GetGameState()
+    {
+        return currentGameState;
+    }
+    
 
     // TODO implement SetPlayerCharactersByRound() outcome into player spawn
     public void OnPlayerJoined(PlayerInput newPlayer)
@@ -125,6 +137,7 @@ public class GameManager : MonoBehaviour
         print("Player left (ID: " + playerLeft.playerIndex + ")");
         Destroy(playerLeft);
     }
+    
 
     public GameObject GetCharacterPrefab(CharType playerCharacter)
     {
@@ -134,6 +147,7 @@ public class GameManager : MonoBehaviour
         }
         return prefabMouse;
     }
+    
 
     public SpawnPoint GetSpawnPosition()
     {
@@ -157,6 +171,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    
 
     [ContextMenu("AutoFill Spawns")]
     public void AutoFillCollectibles()
@@ -178,6 +193,7 @@ public class GameManager : MonoBehaviour
             print("No spawners found");
         }
     }
+    
 
     public GameObject[] GetObjectsWithLayer(string s_layerMask)
     {
@@ -232,6 +248,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     private void OnDisable()
     {
         if (PlayerInputManager.instance != null)

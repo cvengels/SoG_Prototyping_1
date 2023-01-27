@@ -740,7 +740,7 @@ Transform:
   - {fileID: 1794086561}
   - {fileID: 588916485}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &244198419
 PrefabInstance:
@@ -1354,7 +1354,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 715032265067773195, guid: c6e97688ed8c636438275ebbc27b51b2, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 715032265067773195, guid: c6e97688ed8c636438275ebbc27b51b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1411,7 +1411,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5824927341166417344, guid: fe9ef46452ce59c48bcb16bedccc2c15, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5824927341166417344, guid: fe9ef46452ce59c48bcb16bedccc2c15, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2040,7 +2040,7 @@ PrefabInstance:
       objectReference: {fileID: 1794086560}
     - target: {fileID: 9192587515756671226, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9192587515756671226, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2274,16 +2274,6 @@ MonoBehaviour:
     _prefab: Assets/Prefabs/Camera/P2 Follow Cam.prefab
   - _gameObject: {fileID: 1125958920}
     _prefab: Assets/Prefabs/Camera/CamConstrain.prefab
-  - _gameObject: {fileID: 1151368300}
-    _prefab: Assets/Prefabs/Manager/GameManager.prefab
-  - _gameObject: {fileID: 722220607}
-    _prefab: Assets/Prefabs/Manager/InteractiveObjects.prefab
-  - _gameObject: {fileID: 75053885}
-    _prefab: Assets/Prefabs/Manager/AnimationManager.prefab
-  - _gameObject: {fileID: 2067573870}
-    _prefab: Assets/Prefabs/Manager/PlayerInputManager.prefab
-  - _gameObject: {fileID: 1990363885}
-    _prefab: Assets/Prefabs/Manager/PostProcessing.prefab
   - _gameObject: {fileID: 958745714}
     _prefab: Assets/Prefabs/Spawns/CheeseSpawn.prefab
   - _gameObject: {fileID: 1624576150}
@@ -2298,6 +2288,16 @@ MonoBehaviour:
     _prefab: Assets/Prefabs/Spawns/CatSpawn.prefab
   - _gameObject: {fileID: 588916483}
     _prefab: Assets/Prefabs/Spawns/CheeseSpawn.prefab
+  - _gameObject: {fileID: 1151368300}
+    _prefab: Assets/Prefabs/Manager/GameManager.prefab
+  - _gameObject: {fileID: 722220607}
+    _prefab: Assets/Prefabs/Manager/InteractiveObjects.prefab
+  - _gameObject: {fileID: 75053885}
+    _prefab: Assets/Prefabs/Manager/AnimationManager.prefab
+  - _gameObject: {fileID: 2067573870}
+    _prefab: Assets/Prefabs/Manager/PlayerInputManager.prefab
+  - _gameObject: {fileID: 1990363885}
+    _prefab: Assets/Prefabs/Manager/PostProcessing.prefab
   - _gameObject: {fileID: 1528080028}
     _prefab: Assets/Prefabs/Characters/PrefabMouse.prefab
 --- !u!4 &1218353042
@@ -2312,7 +2312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528080028 stripped
 GameObject:
@@ -2385,7 +2385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7051362910684330420, guid: c790fa820d875f44b9f66eaa75f9ff10, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7051362910684330420, guid: c790fa820d875f44b9f66eaa75f9ff10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2659,7 +2659,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1212962647761593097, guid: db502c70ef6335f44b004a3b770b0092, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1212962647761593097, guid: db502c70ef6335f44b004a3b770b0092, type: 3}
       propertyPath: m_LocalPosition.x

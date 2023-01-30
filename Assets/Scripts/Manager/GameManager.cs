@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -30,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharType playerTwoCharacter;
     [SerializeField] private int gameRounds;
     [SerializeField] private GameState currentGameState;
+    [SerializeField] private int mouseLifesLeft;
 
 
     private void Awake()
@@ -54,9 +53,8 @@ public class GameManager : MonoBehaviour
         AutoFillCollectibles();
 
         SetPlayerCharactersByRound();
-
-        currentGameState = GameState.LevelRunning;
     }
+    
 
     private void CheckForSecondScreen()
     {
@@ -69,8 +67,8 @@ public class GameManager : MonoBehaviour
             Display.displays[i].Activate();
         }
     }
-
     
+
     // Set player characters by game round number.
     private void SetPlayerCharactersByRound()
     {
@@ -86,8 +84,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
-    public event Action<GameState> onGameStateChanged;
     
     public GameState GetGameState()
     {
@@ -237,8 +233,21 @@ public class GameManager : MonoBehaviour
         }
         print($"Platforms fixed: {platformsFixed}");
     }
+    
 
+    public bool MouseHasWon()
+    {
+        if (mouseLifesLeft > 0)
+        {
+            mouseLifesLeft--;
+            return true;
+        }
 
+        return false;
+    }
+    
+    // TODO implement Time (fixed time) with lerp to normal time
+    
     private void OnEnable()
     {
         if (PlayerInputManager.instance != null)

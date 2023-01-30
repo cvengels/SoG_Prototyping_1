@@ -174,15 +174,48 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-
-    private void OnEnable()
+    
+    private void OnFightStarted(Vector3 position)
     {
-        GameManager.Instance.onGameStateChanged += OnGameStateChanged;
+        surrogate.SetActive(false);
+    }
+
+    
+    private void OnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
+    {
+        if (GameManager.Instance.MouseHasWon())
+        {
+            surrogate.SetActive(true);
+            surrogate.transform.position = positionOfFightEnd;
+
+            CharType characterType = surrogate.GetComponent<PlayerIndividualBehavior>().GetPrefabType();
+            if (characterType == CharType.Cat)
+            {
+                playerMovementController.Stun(Vector2.up + Vector2.left);
+            }
+            else if (characterType == CharType.Mouse)
+            {
+                playerMovementController.SetMovement(Vector2.up + Vector2.right);
+                playerMovementController.SetAction(true, true);
+            }
+        }
     }
     
+    
+    private void OnEnable()
+    {
+        GameEventManager.Instance.OnGameStateChanged += OnGameStateChanged;
+        GameEventManager.Instance.OnFightStarted += OnFightStarted;
+        GameEventManager.Instance.OnFightEnded += OnFightEnded;
+    }
+
+
+
     private void OnDisable()
     {
-        GameManager.Instance.onGameStateChanged -= OnGameStateChanged;
+        GameEventManager.Instance.OnGameStateChanged -= OnGameStateChanged;
+        GameEventManager.Instance.OnFightStarted += OnFightStarted;
+        GameEventManager.Instance.OnFightEnded += OnFightEnded;
     }
 }
 

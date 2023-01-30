@@ -7,7 +7,7 @@ public class FightManager : MonoBehaviour
     
     public void SetMovement(Vector2 movementDirection, CharType characterType)
     {
-        throw new System.NotImplementedException();
+        // Nothing here
     }
     
     public void SetAction(bool contextPerformed, CharType characterType)

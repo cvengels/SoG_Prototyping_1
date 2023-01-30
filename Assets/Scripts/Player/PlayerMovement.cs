@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal, selectedSpeed;
 
+    private bool isStunned;
+    [SerializeField] private float stunForce = 10f;
+
     private void OnValidate()
     {
         AllignWallJumpTarget();
@@ -261,7 +264,7 @@ public class PlayerMovement : MonoBehaviour
         selectedSpeed *= horizontal > 0f ? 1 : -1;
     }
 
-    public void SetAction(bool actionTriggered)
+    public void SetAction(bool actionTriggered, bool overwritePlayerInput = false)
     {
         // Action button pressed
         if (actionTriggered)
@@ -270,7 +273,7 @@ public class PlayerMovement : MonoBehaviour
 
             // +++ JUMPING LOGIC +++
             // On floor
-            if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f))
+            if (isOnFloor || coyoteJumpEnabled || (jumpBufferEnabled && jumpBufferCounter > 0f) || overwritePlayerInput)
             {
                 // Disable jump buffs
                 coyoteJumpEnabled = false;
@@ -332,5 +335,14 @@ public class PlayerMovement : MonoBehaviour
         animator.Play(animationName);
 
         currentAnimation = newAnimation;
+    }
+
+    public void Stun(Vector2 direction)
+    {
+        if (individualBehavior.GetPrefabType() == CharType.Cat)
+        {
+            isStunned = true;
+            playerRB.AddForce(direction * stunForce);
+        }
     }
 }

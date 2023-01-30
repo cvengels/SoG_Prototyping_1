@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
@@ -30,12 +31,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharType playerTwoCharacter;
     [SerializeField] private int gameRounds;
     [SerializeField] private GameState currentGameState;
-<<<<<<< Updated upstream
+
     [SerializeField] private int mouseLifesLeft;
 
-=======
     [SerializeField] private List<Object> gameScenes;
->>>>>>> Stashed changes
+
 
     private void Awake()
     {
@@ -89,16 +89,12 @@ public class GameManager : MonoBehaviour
             playerTwoCharacter = CharType.Cat;
         }
     }
-    
-<<<<<<< Updated upstream
-    
+
     public GameState GetGameState()
     {
         return currentGameState;
     }
-=======
->>>>>>> Stashed changes
-    
+
 
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
@@ -243,7 +239,6 @@ public class GameManager : MonoBehaviour
         print($"Platforms fixed: {platformsFixed}");
     }
     
-<<<<<<< Updated upstream
 
     public bool MouseHasWon()
     {
@@ -258,12 +253,10 @@ public class GameManager : MonoBehaviour
     
     // TODO implement Time (fixed time) with lerp to normal time
     
-    private void OnEnable()
-=======
     
     // UI
     public void OnUIButtonClicked()
->>>>>>> Stashed changes
+
     {
         print("Button clicked");
         
@@ -304,11 +297,6 @@ public class GameManager : MonoBehaviour
     
     
     // Events
-    public GameState GetGameState()
-    {
-        return currentGameState;
-    }
-    
     private void OnGameStateChanged(GameState newState)
     {
         currentGameState = newState;

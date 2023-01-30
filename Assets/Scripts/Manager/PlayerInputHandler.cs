@@ -183,7 +183,7 @@ public class PlayerInputHandler : MonoBehaviour
     
     private void OnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
     {
-<<<<<<< Updated upstream
+
         if (GameManager.Instance.MouseHasWon())
         {
             surrogate.SetActive(true);
@@ -200,30 +200,23 @@ public class PlayerInputHandler : MonoBehaviour
                 playerMovementController.SetAction(true, true);
             }
         }
-=======
-        //GameEventManager
->>>>>>> Stashed changes
     }
     
     
     private void OnEnable()
     {
-        GameEventManager.Instance.OnGameStateChanged += OnGameStateChanged;
-        GameEventManager.Instance.OnFightStarted += OnFightStarted;
-        GameEventManager.Instance.OnFightEnded += OnFightEnded;
+        GameEventManager.Instance.onGameStateChanged += OnGameStateChanged;
+        GameEventManager.Instance.onFightStarted += OnFightStarted;
+        GameEventManager.Instance.onFightEnded += OnFightEnded;
     }
 
 
 
     private void OnDisable()
     {
-<<<<<<< Updated upstream
-        GameEventManager.Instance.OnGameStateChanged -= OnGameStateChanged;
-        GameEventManager.Instance.OnFightStarted += OnFightStarted;
-        GameEventManager.Instance.OnFightEnded += OnFightEnded;
-=======
-        //GameEventManager
->>>>>>> Stashed changes
+        GameEventManager.Instance.onGameStateChanged -= OnGameStateChanged;
+        GameEventManager.Instance.onFightStarted += OnFightStarted;
+        GameEventManager.Instance.onFightEnded += OnFightEnded;
     }
 }
 

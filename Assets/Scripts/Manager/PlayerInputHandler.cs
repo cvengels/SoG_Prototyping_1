@@ -183,6 +183,7 @@ public class PlayerInputHandler : MonoBehaviour
     
     private void OnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
     {
+<<<<<<< Updated upstream
         if (GameManager.Instance.MouseHasWon())
         {
             surrogate.SetActive(true);
@@ -199,6 +200,9 @@ public class PlayerInputHandler : MonoBehaviour
                 playerMovementController.SetAction(true, true);
             }
         }
+=======
+        //GameEventManager
+>>>>>>> Stashed changes
     }
     
     
@@ -213,9 +217,13 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
+<<<<<<< Updated upstream
         GameEventManager.Instance.OnGameStateChanged -= OnGameStateChanged;
         GameEventManager.Instance.OnFightStarted += OnFightStarted;
         GameEventManager.Instance.OnFightEnded += OnFightEnded;
+=======
+        //GameEventManager
+>>>>>>> Stashed changes
     }
 }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameEventManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
 
     public static GameEventManager Instance;
     
@@ -11,6 +12,9 @@ public class GameEventManager : MonoBehaviour
     public event Action<Vector3> OnFightStarted;
     public event Action<CharType, Vector3> OnFightEnded;
     
+=======
+    public static GameEventManager Instance;
+>>>>>>> Stashed changes
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class GameEventManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
 
     public void GameEvent_OnGameStateChanged(GameState newState)
     {
@@ -39,5 +44,11 @@ public class GameEventManager : MonoBehaviour
     protected virtual void OnOnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
     {
         OnFightEnded?.Invoke(characterWhoWon, positionOfFightEnd);
+=======
+    public event Action<GameState> onGameStateChanged;
+    public void OnGameStateChanged(GameState newState)
+    {
+        onGameStateChanged?.Invoke(newState);
+>>>>>>> Stashed changes
     }
 }

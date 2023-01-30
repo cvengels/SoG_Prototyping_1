@@ -3,6 +3,8 @@ using System.Linq;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -28,8 +30,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharType playerTwoCharacter;
     [SerializeField] private int gameRounds;
     [SerializeField] private GameState currentGameState;
+<<<<<<< Updated upstream
     [SerializeField] private int mouseLifesLeft;
 
+=======
+    [SerializeField] private List<Object> gameScenes;
+>>>>>>> Stashed changes
 
     private void Awake()
     {
@@ -84,14 +90,16 @@ public class GameManager : MonoBehaviour
         }
     }
     
+<<<<<<< Updated upstream
     
     public GameState GetGameState()
     {
         return currentGameState;
     }
+=======
+>>>>>>> Stashed changes
     
 
-    // TODO implement SetPlayerCharactersByRound() outcome into player spawn
     public void OnPlayerJoined(PlayerInput newPlayer)
     {
         print("Player joined (ID: " + newPlayer.playerIndex + ")");
@@ -207,6 +215,7 @@ public class GameManager : MonoBehaviour
         GameObject[] platforms = GetObjectsWithLayer("Floor");
         print($"Platforms with layer name \"Floor\" (layer {LayerMask.NameToLayer("Floor")}) found: {platforms.Length}");
 
+    
         foreach (var platform in platforms)
         {
             if (!platform.GetComponent<PlatformEffector2D>() || !platform.GetComponent<PlatformEffector2D>().enabled || !platform.GetComponent<BoxCollider2D>().usedByEffector)
@@ -234,6 +243,7 @@ public class GameManager : MonoBehaviour
         print($"Platforms fixed: {platformsFixed}");
     }
     
+<<<<<<< Updated upstream
 
     public bool MouseHasWon()
     {
@@ -249,22 +259,118 @@ public class GameManager : MonoBehaviour
     // TODO implement Time (fixed time) with lerp to normal time
     
     private void OnEnable()
+=======
+    
+    // UI
+    public void OnUIButtonClicked()
+>>>>>>> Stashed changes
     {
-        if (PlayerInputManager.instance != null)
+        print("Button clicked");
+        
+        switch (currentGameState)
         {
-            PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
-            PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
+            case GameState.MainMenu:
+                LoadScene("Lobby");
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                break;
+            case GameState.FightBegin:
+                break;
+            case GameState.Fight:
+                break;
+            case GameState.FightEnd:
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
+    private void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(gameScenes.Where(s => s.name == sceneName).ToString());
+    }
     
+    
+    // Events
+    public GameState GetGameState()
+    {
+        return currentGameState;
+    }
+    
+    private void OnGameStateChanged(GameState newState)
+    {
+        currentGameState = newState;
+        SetupNewGameState();
+    }
+
+    private void SetupNewGameState()
+    {
+        switch (currentGameState)
+        {
+            case GameState.MainMenu:
+                break;
+            case GameState.PlayerSelect:
+                break;
+            case GameState.Options:
+                break;
+            case GameState.Credits:
+                break;
+            case GameState.LevelBegin:
+                break;
+            case GameState.LevelRunning:
+                break;
+            case GameState.FightBegin:
+                break;
+            case GameState.Fight:
+                break;
+            case GameState.FightEnd:
+                break;
+            case GameState.LevelEnd:
+                break;
+            case GameState.Pause:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    
+    // Event helper methods
+    private void InstanciateFightScene()
+    {
+        
+    }
+    
+
+
+    private void OnEnable()
+    {
+        PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
+        PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
+        
+        GameEventManager.Instance.onGameStateChanged += OnGameStateChanged;
+    }
+
+
+
     private void OnDisable()
     {
-        if (PlayerInputManager.instance != null)
-        {
-            PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
-            PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
-        }
+        PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
+        PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
+        
+        GameEventManager.Instance.onGameStateChanged -= OnGameStateChanged;
     }
 }
     

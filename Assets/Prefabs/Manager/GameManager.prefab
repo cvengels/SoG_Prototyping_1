@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9192587515756671226}
   - component: {fileID: 5110840374810453625}
+  - component: {fileID: 2092505721171762724}
   - component: {fileID: 8830129457590660856}
   m_Layer: 0
   m_Name: GameManager
@@ -60,6 +61,23 @@ MonoBehaviour:
   playerTwoCharacter: 1
   gameRounds: 0
   currentGameState: 0
+  gameScenes:
+  - {fileID: 102900000, guid: 393541933f7447e44ba3c8b9c3f9eaa6, type: 3}
+  - {fileID: 102900000, guid: 913b61081e0b7374588cbb63b7f0b801, type: 3}
+  - {fileID: 102900000, guid: 9cf913e4fd08c8a49bc759e3c03c9f3c, type: 3}
+  - {fileID: 102900000, guid: af07f815ce6d2de4192b4bf9f644d79d, type: 3}
+--- !u!114 &2092505721171762724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192587515756671227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494e5f99b9b80c64c9ac6a20ee2af6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!81 &8830129457590660856
 AudioListener:
   m_ObjectHideFlags: 0

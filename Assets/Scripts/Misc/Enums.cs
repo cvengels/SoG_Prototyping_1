@@ -27,6 +27,16 @@ public enum SpawnPointType
     Cheese
 }
 
+public enum RoomsLevel1
+{
+    Livingroom,
+    Kitchen,
+    Bedroom,
+    Bathroom,
+    Attic,
+    Basement
+}
+
 public enum GameState
 {
     MainMenu,

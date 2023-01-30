@@ -1,7 +1,163 @@
 fileFormatVersion: 2
 guid: ae3ab52409e25674887bfaf1d1c0da47
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -5070599298521659365
+    second: mouse idle_0
+  - first:
+      213: -5640752237093788795
+    second: mouse idle_1
+  - first:
+      213: 4781776704372006158
+    second: mouse idle_2
+  - first:
+      213: -6825004387691036750
+    second: mouse idle_3
+  - first:
+      213: 1462535163941938214
+    second: mouse idle_4
+  - first:
+      213: 2047333198954204967
+    second: mouse idle_5
+  - first:
+      213: -7372583345275722442
+    second: mouse idle_6
+  - first:
+      213: -6806791567362272316
+    second: mouse idle_7
+  - first:
+      213: -4481785915607436300
+    second: mouse idle_8
+  - first:
+      213: -7874029245166572784
+    second: mouse idle_9
+  - first:
+      213: -999554741848590677
+    second: mouse idle_10
+  - first:
+      213: 4701103171137057579
+    second: mouse idle_11
+  - first:
+      213: 4716053651230654908
+    second: mouse idle_12
+  - first:
+      213: 1166182117162285083
+    second: mouse idle_13
+  - first:
+      213: -1597212578323610795
+    second: mouse idle_14
+  - first:
+      213: 3243066535402770892
+    second: mouse idle_15
+  - first:
+      213: 4118005494367163269
+    second: mouse idle_16
+  - first:
+      213: 7411514156802757661
+    second: mouse idle_17
+  - first:
+      213: 7848190079927151071
+    second: mouse idle_18
+  - first:
+      213: -8058150143772739835
+    second: mouse idle_19
+  - first:
+      213: 4419152595199341597
+    second: mouse idle_20
+  - first:
+      213: -5282613012954909284
+    second: mouse idle_21
+  - first:
+      213: -5810063286806044445
+    second: mouse idle_22
+  - first:
+      213: 7024623910927107923
+    second: mouse idle_23
+  - first:
+      213: -1451757459802892959
+    second: mouse idle_24
+  - first:
+      213: -8829099200382202685
+    second: mouse idle_25
+  - first:
+      213: -1451240242539941900
+    second: mouse idle_26
+  - first:
+      213: -341820696630425474
+    second: mouse idle_27
+  - first:
+      213: 1621028751080317040
+    second: mouse idle_28
+  - first:
+      213: -8037304248797922856
+    second: mouse idle_29
+  - first:
+      213: 7798987617566863500
+    second: mouse idle_30
+  - first:
+      213: -6773030901277214939
+    second: mouse idle_31
+  - first:
+      213: 866699333068611731
+    second: mouse idle_32
+  - first:
+      213: 3342509901666606074
+    second: mouse idle_33
+  - first:
+      213: -2813731160904838524
+    second: mouse idle_34
+  - first:
+      213: -6646053473043586296
+    second: mouse idle_35
+  - first:
+      213: 6398729217081658530
+    second: mouse idle_36
+  - first:
+      213: 6999125129296267161
+    second: mouse idle_37
+  - first:
+      213: -4049144262506934437
+    second: mouse idle_38
+  - first:
+      213: 9063639545584215134
+    second: mouse idle_39
+  - first:
+      213: 7343065662689255059
+    second: mouse idle_40
+  - first:
+      213: -5586474170400575727
+    second: mouse idle_41
+  - first:
+      213: 7416696158786701795
+    second: mouse idle_42
+  - first:
+      213: -698291510483458332
+    second: mouse idle_43
+  - first:
+      213: 8375716040004117426
+    second: mouse idle_44
+  - first:
+      213: -966198317742207993
+    second: mouse idle_45
+  - first:
+      213: 2583358897455513179
+    second: mouse idle_46
+  - first:
+      213: 2196605173944037845
+    second: mouse idle_47
+  - first:
+      213: 8239162977531029921
+    second: mouse idle_48
+  - first:
+      213: -7578674705228195552
+    second: mouse idle_49
+  - first:
+      213: 8067208743263260444
+    second: mouse idle_50
+  - first:
+      213: -6673839269954014561
+    second: mouse idle_51
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +197,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +231,1125 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mouse idle_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18854d9dcc91a9b0800000000000000
+      internalID: -5070599298521659365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_1
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583e802f9b508b1b0800000000000000
+      internalID: -5640752237093788795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_2
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0dd453e3984c5240800000000000000
+      internalID: 4781776704372006158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_3
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf71397ba6b841a0800000000000000
+      internalID: -6825004387691036750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_4
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 624e6469bf7fb4410800000000000000
+      internalID: 1462535163941938214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_5
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f878c72b6996c10800000000000000
+      internalID: 2047333198954204967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_6
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63521e352825fa990800000000000000
+      internalID: -7372583345275722442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_7
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 1787.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c35f37222b6981a0800000000000000
+      internalID: -6806791567362272316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f3bedc847f7dc1c0800000000000000
+      internalID: -4481785915607436300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_9
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01b2fc2be14d9b290800000000000000
+      internalID: -7874029245166572784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_10
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6be86124ed022f0800000000000000
+      internalID: -999554741848590677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_11
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2336183d6cad3140800000000000000
+      internalID: 4701103171137057579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_12
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb1894f1fc9c27140800000000000000
+      internalID: 4716053651230654908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_13
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18fed4f47c1f2010800000000000000
+      internalID: 1166182117162285083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_14
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5534c365f9f85d9e0800000000000000
+      internalID: -1597212578323610795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_15
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 1490.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc193a9d4dfa10d20800000000000000
+      internalID: 3243066535402770892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_16
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5839cd2dd28162930800000000000000
+      internalID: 4118005494367163269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_17
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d14d1049bdcfad660800000000000000
+      internalID: 7411514156802757661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_18
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd96dc3db4f5aec60800000000000000
+      internalID: 7848190079927151071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_19
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507b9ad5323bb2090800000000000000
+      internalID: -8058150143772739835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_20
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d143a152fdbf35d30800000000000000
+      internalID: 4419152595199341597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_21
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9577f4047360b6b0800000000000000
+      internalID: -5282613012954909284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_22
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e0236349328e5fa0800000000000000
+      internalID: -5810063286806044445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_23
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 1193.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 357868b9a3a7c7160800000000000000
+      internalID: 7024623910927107923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_24
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 165dc6438425adbe0800000000000000
+      internalID: -1451757459802892959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_25
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc888a4e0db87580800000000000000
+      internalID: -8829099200382202685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_26
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffa7ab30b82cdbe0800000000000000
+      internalID: -1451240242539941900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_27
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78877033eb914bf0800000000000000
+      internalID: -341820696630425474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_28
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07066de7f0d0f7610800000000000000
+      internalID: 1621028751080317040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_29
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d979a28e52c57090800000000000000
+      internalID: -8037304248797922856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_30
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c803eb8dae19b3c60800000000000000
+      internalID: 7798987617566863500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_31
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 896.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 527b0a4c74c5102a0800000000000000
+      internalID: -6773030901277214939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_32
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3906f929372270c00800000000000000
+      internalID: 866699333068611731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_33
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb5013db0bf26e20800000000000000
+      internalID: 3342509901666606074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_34
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482d1dcba6e93f8d0800000000000000
+      internalID: -2813731160904838524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_35
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8036cfc149974c3a0800000000000000
+      internalID: -6646053473043586296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_36
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2acc01e225adcc850800000000000000
+      internalID: 6398729217081658530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_37
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 997c63ed833e12160800000000000000
+      internalID: 6999125129296267161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_38
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f86fc1fbc8ec7c0800000000000000
+      internalID: -4049144262506934437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_39
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 599.4286
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e54eabe352488cd70800000000000000
+      internalID: 9063639545584215134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_40
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39e16f2a05fc7e560800000000000000
+      internalID: 7343065662689255059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_41
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11fe066275bd872b0800000000000000
+      internalID: -5586474170400575727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_42
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e94c7f6cd56de660800000000000000
+      internalID: 7416696158786701795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_43
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e666f7229b2f46f0800000000000000
+      internalID: -698291510483458332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_44
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b3acf7ac558c3470800000000000000
+      internalID: 8375716040004117426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_45
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c4568cfbf5792f0800000000000000
+      internalID: -966198317742207993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_46
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e3e22ea3fe9d320800000000000000
+      internalID: 2583358897455513179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_47
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 302.42856
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d138b084c8eb7e10800000000000000
+      internalID: 2196605173944037845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_48
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 5.4285583
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a9694a3313675270800000000000000
+      internalID: 8239162977531029921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_49
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 5.4285583
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02992a6528323d690800000000000000
+      internalID: -7578674705228195552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_50
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 5.4285583
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1fc12f2c9b74ff60800000000000000
+      internalID: 8067208743263260444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse idle_51
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 5.4285583
+        width: 222.25
+        height: 295.57144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92b6522b82c163a0800000000000000
+      internalID: -6673839269954014561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

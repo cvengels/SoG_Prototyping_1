@@ -1,7 +1,43 @@
 fileFormatVersion: 2
 guid: baa22a848335c844787d48d05a8cf0ad
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2261726945093780026
+    second: mouse walk cycle_0
+  - first:
+      213: -6015133054737518592
+    second: mouse walk cycle_1
+  - first:
+      213: 6773543345004518023
+    second: mouse walk cycle_2
+  - first:
+      213: -4076018194513332874
+    second: mouse walk cycle_3
+  - first:
+      213: -4017152576460516520
+    second: mouse walk cycle_4
+  - first:
+      213: -2958061191928976538
+    second: mouse walk cycle_5
+  - first:
+      213: -2550263827430571085
+    second: mouse walk cycle_6
+  - first:
+      213: -667841253192902715
+    second: mouse walk cycle_7
+  - first:
+      213: 2366746908990184065
+    second: mouse walk cycle_8
+  - first:
+      213: 2522379808856985850
+    second: mouse walk cycle_9
+  - first:
+      213: -348387793231506432
+    second: mouse walk cycle_10
+  - first:
+      213: -2745657088219130694
+    second: mouse walk cycle_11
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +77,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +111,285 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mouse walk cycle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 614
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a328e356ca4436f10800000000000000
+      internalID: 2261726945093780026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_1
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 614
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000f8a33b54f58ca0800000000000000
+      internalID: -6015133054737518592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_2
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 614
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a94b5d8c5700e50800000000000000
+      internalID: 6773543345004518023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_3
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 614
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 675f00a3c031f67c0800000000000000
+      internalID: -4076018194513332874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 307
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8539687f3053048c0800000000000000
+      internalID: -4017152576460516520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 307
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b6437b40bd2f6d0800000000000000
+      internalID: -2958061191928976538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_6
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 307
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b309729f84ab9cd0800000000000000
+      internalID: -2550263827430571085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_7
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 307
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c7d5192be95bb6f0800000000000000
+      internalID: -667841253192902715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a1d9f26cf58d020800000000000000
+      internalID: 2366746908990184065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_9
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0d98f621b410320800000000000000
+      internalID: 2522379808856985850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_10
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0049a5cd5274a2bf0800000000000000
+      internalID: -348387793231506432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mouse walk cycle_11
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 0
+        width: 304
+        height: 307
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab45aa5ec6775e9d0800000000000000
+      internalID: -2745657088219130694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

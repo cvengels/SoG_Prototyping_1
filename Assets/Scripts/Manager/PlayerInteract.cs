@@ -25,8 +25,9 @@ public class PlayerInteract : MonoBehaviour
         // Cat interactions
         else if (characterType == CharType.Cat)
         {
+            PlayerIndividualBehavior playerCollider = col?.GetComponentInParent<PlayerIndividualBehavior>();
             // Touches mouse
-            if (col.GetComponentInParent<PlayerIndividualBehavior>().GetPrefabType() == CharType.Mouse)
+            if (playerCollider != null && playerCollider.GetPrefabType() == CharType.Mouse)
             {
                 // Initiate fight
                 print("Jetzt gibt's aufs Maul!");

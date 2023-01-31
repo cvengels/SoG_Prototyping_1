@@ -2579,11 +2579,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1781656803877908280, guid: 1c26c5c72c4ce4d4ab4c75e68d87ea03, type: 3}
   m_PrefabInstance: {fileID: 1125958919}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &1125958921 stripped
-PolygonCollider2D:
-  m_CorrespondingSourceObject: {fileID: 1781656803877908281, guid: 1c26c5c72c4ce4d4ab4c75e68d87ea03, type: 3}
-  m_PrefabInstance: {fileID: 1125958919}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1125958922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1781656803877908262, guid: 1c26c5c72c4ce4d4ab4c75e68d87ea03, type: 3}
@@ -2816,32 +2811,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.size
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 588916484}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[1]
       value: 
-      objectReference: {fileID: 588916484}
+      objectReference: {fileID: 683120574}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[2]
       value: 
-      objectReference: {fileID: 683120574}
+      objectReference: {fileID: 958745715}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[3]
       value: 
-      objectReference: {fileID: 958745715}
+      objectReference: {fileID: 1093762332}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[4]
       value: 
-      objectReference: {fileID: 1093762332}
+      objectReference: {fileID: 1624576151}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[5]
       value: 
-      objectReference: {fileID: 1624576151}
+      objectReference: {fileID: 1794086560}
     - target: {fileID: 5110840374810453625, guid: 612dbeaf5fcfe794caa8d0a8e837bffa, type: 3}
       propertyPath: spawnerList.Array.data[6]
       value: 
@@ -4564,7 +4559,7 @@ PrefabInstance:
     - target: {fileID: 7704921248329421798, guid: 2ad9f0fd769b43143a9331cbcfe7ef26, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 1125958921}
+      objectReference: {fileID: 0}
     - target: {fileID: 7704921248329421799, guid: 2ad9f0fd769b43143a9331cbcfe7ef26, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4806,7 +4801,7 @@ PrefabInstance:
     - target: {fileID: 1964242890882059062, guid: ad578b4e81e47984aa08ae4ce78aecd6, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
-      objectReference: {fileID: 1125958921}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad578b4e81e47984aa08ae4ce78aecd6, type: 3}
 --- !u!1 &4491812933199647935 stripped

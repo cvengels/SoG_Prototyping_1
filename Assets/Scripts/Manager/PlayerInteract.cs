@@ -31,6 +31,8 @@ public class PlayerInteract : MonoBehaviour
             {
                 // Initiate fight
                 print("Jetzt gibt's aufs Maul!");
+                GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightBegin);
+                
             }
             
         }

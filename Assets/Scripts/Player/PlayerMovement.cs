@@ -68,13 +68,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         individualBehavior = GetComponent<PlayerIndividualBehavior>();
-
-#if UNITY_STANDALONE
-        foreach (Transform editorHelper in GetComponentsInChildren<Transform>().Where(eh => eh.CompareTag("EditorOnly")))
-        {
-            editorHelper.gameObject.SetActive(false);
-        }
-#endif
     }
 
     private void FixedUpdate()

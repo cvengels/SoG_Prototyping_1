@@ -6,7 +6,6 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private GameObject surrogate;
     private PlayerMovement playerMovementController;
-    private FightManager fightManager;
     private CharType characterType;
 
     public void OnGetCharacterToControl(GameObject characterPrefab, SpawnPoint spawnPosition)
@@ -17,15 +16,10 @@ public class PlayerInputHandler : MonoBehaviour
         surrogate = Instantiate(characterPrefab, spawnPosition.transform.position, Quaternion.identity);
         if (surrogate != null)
         {
-            print($"Character {name} spawned at {spawnPosition.name}");
+            print($"Character {name} spawned at {spawnPosition.name} ({(Vector2)spawnPosition.transform.position})");
         }
         playerMovementController = surrogate.GetComponent<PlayerMovement>();
         // Fight manager instance
-    }
-
-    public void OnGetFightToControl(FightManager fightManager)
-    {
-        this.fightManager = fightManager;
     }
 
 
@@ -46,13 +40,18 @@ public class PlayerInputHandler : MonoBehaviour
             case GameState.LevelRunning:
                 break;
             case GameState.FightBegin:
+                if (FightManager.Instance == null)
+                {
+                    Instantiate(GameManager.Instance.GetFightPrefab(), surrogate.transform.position,
+                        Quaternion.identity);
+                }
                 surrogate.gameObject?.SetActive(false);
                 break;
             case GameState.Fight:
                 break;
             case GameState.FightEnd:
-                playerMovementController.transform.position = fightManager.transform.position;
-                surrogate.transform.position = fightManager.transform.position;
+                playerMovementController.transform.position = FightManager.Instance.transform.position;
+                surrogate.transform.position = FightManager.Instance.transform.position;
                 surrogate.gameObject?.SetActive(true);
                 break;
             case GameState.LevelEnd:
@@ -85,7 +84,7 @@ public class PlayerInputHandler : MonoBehaviour
             case GameState.FightBegin:
                 break;
             case GameState.Fight:
-                transform.position = fightManager.transform.position;
+                transform.position = FightManager.Instance.transform.position;
                 break;
             case GameState.FightEnd:
                 break;
@@ -101,35 +100,16 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 movementDirection = context.ReadValue<Vector2>();
-        switch (GameManager.Instance.GetGameState())
+        if (playerMovementController != null)
         {
-            case GameState.MainMenu:
-                break;
-            case GameState.PlayerSelect:
-                break;
-            case GameState.Options:
-                break;
-            case GameState.Credits:
-                break;
-            case GameState.LevelBegin:
-                break;
-            case GameState.LevelRunning:
-                playerMovementController?.SetMovement(movementDirection);
-                break;
-            case GameState.FightBegin:
-                break;
-            case GameState.Fight:
-                fightManager?.SetMovement(movementDirection, characterType);
-                break;
-            case GameState.FightEnd:
-                break;
-            case GameState.LevelEnd:
-                break;
-            case GameState.Pause:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
+            playerMovementController.SetMovement(movementDirection);
         }
+
+        if (FightManager.Instance != null)
+        {
+            FightManager.Instance.SetMovement(movementDirection, characterType);
+        }
+        
     }
 
     public void OnAction(InputAction.CallbackContext context)
@@ -161,7 +141,7 @@ public class PlayerInputHandler : MonoBehaviour
             case GameState.FightBegin:
                 break;
             case GameState.Fight:
-                fightManager?.SetAction(contextPerformed, characterType);
+                FightManager.Instance?.SetAction(contextPerformed, characterType);
                 break;
             case GameState.FightEnd:
                 break;

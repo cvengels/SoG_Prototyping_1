@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     private SpawnPoint nextSpawnPosition;
-    private PlayerInputManager playerInputManager;
 
     [Header("Character Prefabs")] 
     [SerializeField] private GameObject prefabCat;
@@ -49,18 +48,22 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
         
+#if UNITY_STANDALONE
+        foreach (Transform editorHelper in GetComponentsInChildren<Transform>().Where(eh => eh.CompareTag("EditorOnly")))
+        {
+            editorHelper.gameObject.SetActive(false);
+        }
+#endif
+        
         // Setup screens
         CheckForSecondScreen();
-        
-        // Find player input manager
-        playerInputManager = FindObjectOfType<PlayerInputManager>();
 
         // Find all spawn points
         AutoFillCollectibles();
 
         SetPlayerCharactersByRound();
     }
-    
+
 
     private void CheckForSecondScreen()
     {
@@ -147,6 +150,11 @@ public class GameManager : MonoBehaviour
         }
         return prefabMouse;
     }
+
+    public GameObject GetFightPrefab()
+    {
+        return prefabFight;
+    }
     
 
     public SpawnPoint GetSpawnPosition()
@@ -154,24 +162,6 @@ public class GameManager : MonoBehaviour
         return nextSpawnPosition;
     }
 
-
-    public void CheckIfPlayerIsInVoid()
-    {
-        if (PlayerInput.all.Count > 0)
-        {
-            foreach (var player in PlayerInput.all)
-            {
-                if (player.transform.position.y < 10000f)
-                {
-                    CharType playerCharacter = player.GetComponentInChildren<PlayerIndividualBehavior>().GetPrefabType();
-                    SpawnPoint[] spawnPoints = spawnerList.Where(sp => (int)sp.GetSpawnType() == (int)playerCharacter).ToArray();
-                    
-                    player.transform.position = new Vector2();
-                }
-            }
-        }
-    }
-    
 
     [ContextMenu("AutoFill Spawns")]
     public void AutoFillCollectibles()
@@ -252,43 +242,7 @@ public class GameManager : MonoBehaviour
     }
     
     // TODO implement Time (fixed time) with lerp to normal time
-    
-    
-    // UI
-    public void OnUIButtonClicked()
 
-    {
-        print("Button clicked");
-        
-        switch (currentGameState)
-        {
-            case GameState.MainMenu:
-                LoadScene("Lobby");
-                break;
-            case GameState.PlayerSelect:
-                break;
-            case GameState.Options:
-                break;
-            case GameState.Credits:
-                break;
-            case GameState.LevelBegin:
-                break;
-            case GameState.LevelRunning:
-                break;
-            case GameState.FightBegin:
-                break;
-            case GameState.Fight:
-                break;
-            case GameState.FightEnd:
-                break;
-            case GameState.LevelEnd:
-                break;
-            case GameState.Pause:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-    }
 
     private void LoadScene(string sceneName)
     {
@@ -297,13 +251,21 @@ public class GameManager : MonoBehaviour
     
     
     // Events
-    private void OnGameStateChanged(GameState newState)
+    private void PassierscheinA38(GameState newState)
     {
-        currentGameState = newState;
-        SetupNewGameState();
+        if (newState == CheckNewGameState(newState))
+        {
+            Debug.Log($"New game state validated: {newState.ToString()}");
+            currentGameState = CheckNewGameState(newState);
+            ExecNewGameState();
+        }
+        else
+        {
+            Debug.LogError($"Cannot switch from {currentGameState.ToString()} to {newState.ToString()}!");
+        }
     }
 
-    private void SetupNewGameState()
+    private void ExecNewGameState()
     {
         switch (currentGameState)
         {
@@ -335,12 +297,74 @@ public class GameManager : MonoBehaviour
     }
     
     
+    private GameState CheckNewGameState(GameState newState)
+    {
+        switch (currentGameState)
+        {
+            case GameState.MainMenu:
+                if (newState == GameState.PlayerSelect || 
+                    newState == GameState.Options ||
+                    newState == GameState.Credits)
+                    return newState;
+                break;
+            case GameState.PlayerSelect:
+                if (newState == GameState.MainMenu ||
+                    newState == GameState.LevelBegin)
+                    return newState;
+                break;
+            case GameState.Options:
+                if (newState == GameState.MainMenu)
+                    return newState;
+                break;
+            case GameState.Credits:
+                if (newState == GameState.MainMenu)
+                    return newState;
+                break;
+            case GameState.LevelBegin:
+                if (newState == GameState.LevelRunning)
+                    return newState;
+                break;
+            case GameState.LevelRunning:
+                if (newState == GameState.FightBegin ||
+                    newState == GameState.Pause ||
+                    newState == GameState.LevelEnd)
+                    return newState;
+                break;
+            case GameState.FightBegin:
+                if (newState == GameState.Fight)
+                    return newState;
+                break;
+            case GameState.Fight:
+                if (newState == GameState.Pause ||
+                    newState == GameState.FightEnd)
+                    return newState;
+                break;
+            case GameState.FightEnd:
+                if (newState == GameState.LevelRunning ||
+                    newState == GameState.LevelEnd)
+                    return newState;
+                break;
+            case GameState.LevelEnd:
+                if (newState == GameState.LevelBegin ||
+                    newState == GameState.MainMenu)
+                    return newState;
+                break;
+            case GameState.Pause:
+                if (newState == GameState.LevelRunning ||
+                    newState == GameState.Fight ||
+                    newState == GameState.MainMenu)
+                    return newState;
+                break;
+        }
+        return GameState.MainMenu;
+    }
+    
+    
     // Event helper methods
-    private void InstanciateFightScene()
+    private void InstantiateFightScene()
     {
         
     }
-    
 
 
     private void OnEnable()
@@ -348,17 +372,20 @@ public class GameManager : MonoBehaviour
         PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
         
-        GameEventManager.Instance.onGameStateChanged += OnGameStateChanged;
+        GameEventManager.Instance.onGameStateChanged += PassierscheinA38;
     }
 
 
 
     private void OnDisable()
     {
-        PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
-        PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
+        if (PlayerInputManager.instance != null)
+        {
+            PlayerInputManager.instance.onPlayerJoined -= OnPlayerJoined;
+            PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
+        }
         
-        GameEventManager.Instance.onGameStateChanged -= OnGameStateChanged;
+        GameEventManager.Instance.onGameStateChanged -= PassierscheinA38;
     }
 }
     

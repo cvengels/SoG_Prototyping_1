@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: SoG 2022
-  productName: HereWeGoAgain
+  productName: Here We Go Again
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.9058824, g: 0.8196079, b: 1, a: 1}

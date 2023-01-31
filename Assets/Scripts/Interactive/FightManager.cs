@@ -70,14 +70,12 @@ public class FightManager : MonoBehaviour
     {
         if (fightIsDecided)
         {
-            GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
             fightAnimator.Play("Fight_End");
         }
     }
 
     private void OnFightDone()
     {
-        Destroy(this);
         GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelRunning);
     }
 
@@ -103,7 +101,7 @@ public class FightManager : MonoBehaviour
                 buttonPressesDone--;
             }
             
-            fightIndicator.AdjustIndicator(buttonPressesNeededTotal, buttonPressesDone);
+            fightIndicator.AdjustIndicator(characterType, buttonPressesNeededTotal, buttonPressesDone);
             
             print($"Button Press status: {buttonPressesDone}");
 
@@ -111,6 +109,12 @@ public class FightManager : MonoBehaviour
             {
                 print("Fight is over, checking who won ...");
                 GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
+
+                if (buttonPressesDone >= buttonPressesNeededTotal)
+                {
+                    GameEventManager.Instance.GameEvent_MouseWinsFight();
+                }
+                fightIsDecided = true;
             }
         }
     }

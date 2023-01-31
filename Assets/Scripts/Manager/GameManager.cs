@@ -26,9 +26,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<SpawnPoint> spawnerList;
 
     [Header("Global Statistics")]
-    [SerializeField] private CharType playerOneCharacter;
-    [SerializeField] private CharType playerTwoCharacter;
+    [SerializeField] private CharType catCharacterType = CharType.Cat;
+    [SerializeField] private CharType mouseCharacterType = CharType.Mouse;
     [SerializeField] private int gameRounds;
+    [SerializeField] private CharType playerWhoWonRound;
     [SerializeField] private GameState currentGameState;
 
     [SerializeField] private int mouseLifesLeft;
@@ -83,13 +84,13 @@ public class GameManager : MonoBehaviour
     {
         if (gameRounds % 2 == 0)
         {
-            playerOneCharacter = CharType.Cat;
-            playerTwoCharacter = CharType.Mouse;
+            catCharacterType = CharType.Cat;
+            mouseCharacterType = CharType.Mouse;
         }
         else
         {
-            playerOneCharacter = CharType.Mouse;
-            playerTwoCharacter = CharType.Cat;
+            catCharacterType = CharType.Mouse;
+            mouseCharacterType = CharType.Cat;
         }
     }
 
@@ -109,16 +110,16 @@ public class GameManager : MonoBehaviour
         {
             case 0:
                 newPlayerCam = GameObject.FindGameObjectWithTag("Player1Cam");
-                SpawnPoint[] possiblePlayerOneSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)playerOneCharacter).ToArray();
+                SpawnPoint[] possiblePlayerOneSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)catCharacterType).ToArray();
                 nextSpawnPosition = possiblePlayerOneSpawnPoints[Random.Range(0, possiblePlayerOneSpawnPoints.Length - 1)];
-                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(playerOneCharacter), nextSpawnPosition);
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(catCharacterType), nextSpawnPosition);
                 break;
 
             case 1:
                 newPlayerCam = GameObject.FindGameObjectWithTag("Player2Cam");
-                SpawnPoint[] possiblePlayerTwoSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)playerTwoCharacter).ToArray();
+                SpawnPoint[] possiblePlayerTwoSpawnPoints = spawnerList.Where(sp => sp.GetSpawnType() == (SpawnPointType)mouseCharacterType).ToArray();
                 nextSpawnPosition = possiblePlayerTwoSpawnPoints[Random.Range(0, possiblePlayerTwoSpawnPoints.Length - 1)];
-                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(playerTwoCharacter), nextSpawnPosition);
+                newPlayer.GetComponent<PlayerInputHandler>().OnGetCharacterToControl(GetCharacterPrefab(mouseCharacterType), nextSpawnPosition);
                 break;
         }
 
@@ -278,12 +279,34 @@ public class GameManager : MonoBehaviour
             case GameState.LevelBegin:
                 break;
             case GameState.LevelRunning:
+                GameObject fightObject = FindObjectOfType<FightManager>().gameObject;
+                if (fightObject != null)
+                {
+                    Destroy(fightObject);
+                }
                 break;
             case GameState.FightBegin:
                 break;
             case GameState.Fight:
                 break;
             case GameState.FightEnd:
+                PlayerInput[] players = FindObjectsOfType<PlayerInput>();
+                string playerCamName = "";
+                foreach (var player in players)
+                {
+                    if (player.playerIndex == 0)
+                    {
+                        playerCamName = "Player1Cam";
+                    }
+                    else
+                    {
+                        playerCamName = "Player2Cam";
+                    }
+                GameObject.FindGameObjectWithTag(playerCamName).
+                    GetComponent<CinemachineVirtualCamera>().
+                    Follow = player.transform;
+                }
+
                 break;
             case GameState.LevelEnd:
                 break;
@@ -356,12 +379,16 @@ public class GameManager : MonoBehaviour
         }
         return GameState.MainMenu;
     }
-    
-    
-    // Event helper methods
-    private void InstantiateFightScene()
+
+
+    private void CatWinsFight()
     {
-        
+        CatWinsRound();
+    }
+
+    private void CatWinsRound()
+    {
+        GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelEnd);
     }
 
 
@@ -372,6 +399,7 @@ public class GameManager : MonoBehaviour
         
         GameEventManager.Instance.onGameStateChanged += PassierscheinA38;
         GameEventManager.Instance.mouseWinsFight += DecrementMouseLifes;
+        GameEventManager.Instance.catWinsFight += CatWinsFight;
     }
 
     private void DecrementMouseLifes()
@@ -397,6 +425,7 @@ public class GameManager : MonoBehaviour
         
         GameEventManager.Instance.onGameStateChanged -= PassierscheinA38;
         GameEventManager.Instance.mouseWinsFight -= DecrementMouseLifes;
+        GameEventManager.Instance.catWinsFight -= CatWinsFight;
     }
 }
     

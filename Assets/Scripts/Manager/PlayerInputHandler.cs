@@ -65,22 +65,6 @@ public class PlayerInputHandler : MonoBehaviour
                 playerMovementController.transform.position = FightManager.Instance.transform.position;
                 surrogate.transform.position = FightManager.Instance.transform.position;
                 surrogate.gameObject?.SetActive(true);
-
-                string playerCamName = "";
-
-                if (GetComponent<PlayerInput>().playerIndex == 0)
-                {
-                    playerCamName = "Player1Cam";
-                }
-                else
-                {
-                    playerCamName = "Player2Cam";
-                }
-
-                GameObject.FindGameObjectWithTag(playerCamName).
-                    GetComponent<CinemachineVirtualCamera>().
-                    Follow = transform;
-                
                 break;
             case GameState.LevelEnd:
                 break;

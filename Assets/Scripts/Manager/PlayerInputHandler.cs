@@ -1,6 +1,8 @@
 using System;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -42,8 +44,18 @@ public class PlayerInputHandler : MonoBehaviour
             case GameState.FightBegin:
                 if (FightManager.Instance == null)
                 {
-                    Instantiate(GameManager.Instance.GetFightPrefab(), surrogate.transform.position,
+                    GameObject fightInstance = Instantiate(GameManager.Instance.GetFightPrefab(), surrogate.transform.position,
                         Quaternion.identity);
+                    fightInstance.GetComponent<Rigidbody2D>().velocity = (Vector2.right * Random.Range(-1, 0) + Vector2.up) * 50f;
+
+                    GameObject.
+                            FindGameObjectWithTag("Player1Cam").
+                            GetComponent<CinemachineVirtualCamera>().
+                            Follow = fightInstance.transform;
+                    GameObject.
+                        FindGameObjectWithTag("Player2Cam").
+                        GetComponent<CinemachineVirtualCamera>().
+                        Follow = fightInstance.transform;
                 }
                 surrogate.gameObject?.SetActive(false);
                 break;

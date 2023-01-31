@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FightManager : MonoBehaviour
 {
@@ -21,8 +23,23 @@ public class FightManager : MonoBehaviour
             Instance = this;
         }
     }
-    
-    
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Vector2 playerVelocity = GetComponent<Rigidbody2D>().velocity;
+        
+        playerVelocity = new Vector2(
+            Random.Range(-10f, 10f),
+            playerVelocity.y
+            );
+
+        if (playerVelocity.x < 0.5f)
+        {
+            playerVelocity = (Vector2.right * Random.Range(-1, 0) + Vector2.up) * 50f ;
+        }
+    }
+
+
     public void SetMovement(Vector2 movementDirection, CharType characterType)
     {
         // Nothing here

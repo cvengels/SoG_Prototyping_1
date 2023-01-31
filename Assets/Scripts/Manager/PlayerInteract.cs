@@ -27,7 +27,9 @@ public class PlayerInteract : MonoBehaviour
         {
             PlayerIndividualBehavior playerCollider = col?.GetComponentInParent<PlayerIndividualBehavior>();
             // Touches mouse
-            if (playerCollider != null && playerCollider.GetPrefabType() == CharType.Mouse)
+            if (playerCollider != null && 
+                playerCollider.GetPrefabType() == CharType.Mouse && 
+                GameManager.Instance.GetGameState() == GameState.LevelRunning)
             {
                 // Initiate fight
                 print("Jetzt gibt's aufs Maul!");

@@ -49,9 +49,9 @@ public class PlayerInputHandler : MonoBehaviour
                     fightInstance.GetComponent<Rigidbody2D>().velocity = (Vector2.right * Random.Range(-1, 0) + Vector2.up) * 50f;
 
                     GameObject.
-                            FindGameObjectWithTag("Player1Cam").
-                            GetComponent<CinemachineVirtualCamera>().
-                            Follow = fightInstance.transform;
+                        FindGameObjectWithTag("Player1Cam").
+                        GetComponent<CinemachineVirtualCamera>().
+                        Follow = fightInstance.transform;
                     GameObject.
                         FindGameObjectWithTag("Player2Cam").
                         GetComponent<CinemachineVirtualCamera>().
@@ -65,6 +65,22 @@ public class PlayerInputHandler : MonoBehaviour
                 playerMovementController.transform.position = FightManager.Instance.transform.position;
                 surrogate.transform.position = FightManager.Instance.transform.position;
                 surrogate.gameObject?.SetActive(true);
+
+                string playerCamName = "";
+
+                if (GetComponent<PlayerInput>().playerIndex == 0)
+                {
+                    playerCamName = "Player1Cam";
+                }
+                else
+                {
+                    playerCamName = "Player2Cam";
+                }
+
+                GameObject.FindGameObjectWithTag(playerCamName).
+                    GetComponent<CinemachineVirtualCamera>().
+                    Follow = transform;
+                
                 break;
             case GameState.LevelEnd:
                 break;
@@ -111,58 +127,63 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 movementDirection = context.ReadValue<Vector2>();
-        if (playerMovementController != null)
+        if (gameObject.scene.IsValid())
         {
-            playerMovementController.SetMovement(movementDirection);
-        }
+            Vector2 movementDirection = context.ReadValue<Vector2>();
+            if (playerMovementController != null)
+            {
+                playerMovementController.SetMovement(movementDirection);
+            }
 
-        if (FightManager.Instance != null)
-        {
-            FightManager.Instance.SetMovement(movementDirection, characterType);
+            if (FightManager.Instance != null)
+            {
+                FightManager.Instance.SetMovement(movementDirection, characterType);
+            }
         }
-        
     }
 
     public void OnAction(InputAction.CallbackContext context)
     {
-        bool contextPerformed = false;
-        if (context.performed)
+        if (gameObject.scene.IsValid())
         {
-            contextPerformed = true;
-        }
-        if (context.canceled)
-        {
-            contextPerformed = false;
-        }
-        switch (GameManager.Instance.GetGameState())
-        {
-            case GameState.MainMenu:
-                break;
-            case GameState.PlayerSelect:
-                break;
-            case GameState.Options:
-                break;
-            case GameState.Credits:
-                break;
-            case GameState.LevelBegin:
-                break;
-            case GameState.LevelRunning:
-                    playerMovementController?.SetAction(contextPerformed);
-                break;
-            case GameState.FightBegin:
-                break;
-            case GameState.Fight:
-                FightManager.Instance?.SetAction(contextPerformed, characterType);
-                break;
-            case GameState.FightEnd:
-                break;
-            case GameState.LevelEnd:
-                break;
-            case GameState.Pause:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
+            bool contextPerformed = false;
+            if (context.performed)
+            {
+                contextPerformed = true;
+            }
+            if (context.started || context.canceled)
+            {
+                contextPerformed = false;
+            }
+            switch (GameManager.Instance.GetGameState())
+            {
+                case GameState.MainMenu:
+                    break;
+                case GameState.PlayerSelect:
+                    break;
+                case GameState.Options:
+                    break;
+                case GameState.Credits:
+                    break;
+                case GameState.LevelBegin:
+                    break;
+                case GameState.LevelRunning:
+                        playerMovementController?.SetAction(contextPerformed);
+                    break;
+                case GameState.FightBegin:
+                    break;
+                case GameState.Fight:
+                    FightManager.Instance?.SetAction(contextPerformed, characterType);
+                    break;
+                case GameState.FightEnd:
+                    break;
+                case GameState.LevelEnd:
+                    break;
+                case GameState.Pause:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 

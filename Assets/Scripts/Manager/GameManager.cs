@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour
         if (newPlayerCam != null)
         {
             newPlayerCam.GetComponent<CinemachineVirtualCamera>().Follow = newPlayer.transform;
-            newPlayerCam.GetComponent<CinemachineVirtualCamera>().LookAt = newPlayer.transform;
         }
         else
         {
@@ -232,9 +231,8 @@ public class GameManager : MonoBehaviour
 
     public bool MouseHasWon()
     {
-        if (mouseLifesLeft > 0)
+        if (mouseLifesLeft > 1)
         {
-            mouseLifesLeft--;
             return true;
         }
 
@@ -373,8 +371,20 @@ public class GameManager : MonoBehaviour
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
         
         GameEventManager.Instance.onGameStateChanged += PassierscheinA38;
+        GameEventManager.Instance.mouseWinsFight += DecrementMouseLifes;
     }
 
+    private void DecrementMouseLifes()
+    {
+        if (!MouseHasWon())
+        {
+            GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelEnd);
+        }
+        else
+        {
+            mouseLifesLeft--;
+        }
+    }
 
 
     private void OnDisable()
@@ -386,6 +396,7 @@ public class GameManager : MonoBehaviour
         }
         
         GameEventManager.Instance.onGameStateChanged -= PassierscheinA38;
+        GameEventManager.Instance.mouseWinsFight -= DecrementMouseLifes;
     }
 }
     

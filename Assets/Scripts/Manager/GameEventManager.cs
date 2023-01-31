@@ -10,6 +10,7 @@ public class GameEventManager : MonoBehaviour
     public event Action<GameState> onGameStateChanged;
     public event Action<Vector3> onFightStarted;
     public event Action<CharType, Vector3> onFightEnded;
+    public event Action mouseWinsFight;
 
     private void Awake()
     {
@@ -34,8 +35,13 @@ public class GameEventManager : MonoBehaviour
         onFightStarted?.Invoke(fightStartPosition);
     }
 
-    protected virtual void GameEvent_OnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
+    public void GameEvent_OnFightEnded(CharType characterWhoWon, Vector3 positionOfFightEnd)
     {
         onFightEnded?.Invoke(characterWhoWon, positionOfFightEnd);
+    }
+
+    public void GameEvent_MouseWinsFight()
+    {
+        mouseWinsFight?.Invoke();
     }
 }

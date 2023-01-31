@@ -15,11 +15,11 @@
                 },
                 {
                     "name": "Action",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "bbbd1086-ab8e-43a0-9778-e58bfa5e4b32",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -71,7 +71,7 @@
                     "name": "",
                     "id": "e6fb4c41-ac82-4b72-b454-ee583b31e6b5",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Action",
@@ -82,7 +82,7 @@
                     "name": "",
                     "id": "3da5f9da-fd0a-4f72-b944-564fa5171834",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Action",

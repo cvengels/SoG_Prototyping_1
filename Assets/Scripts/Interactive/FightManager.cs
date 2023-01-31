@@ -1,5 +1,7 @@
 using System;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class FightManager : MonoBehaviour
@@ -7,7 +9,13 @@ public class FightManager : MonoBehaviour
     public static FightManager Instance;
 
     [SerializeField] private float timeForMouseToInteract = 10f;
-    [SerializeField] private int buttonPressesNeeded = 20;
+    [SerializeField] private int buttonPressesNeededTotal = 100;
+    [SerializeField] private int buttonPressesDone;
+    [SerializeField] private bool fightIsDecided;
+
+    private Animator fightAnimator;
+
+    private FightStatusGUI fightIndicator;
     
     
     private void Awake()
@@ -22,9 +30,20 @@ public class FightManager : MonoBehaviour
             Debug.Log("Fight Manager spawned");
             Instance = this;
         }
+
+        if (buttonPressesNeededTotal % 2 != 0)
+        {
+            buttonPressesNeededTotal++;
+        }
+
+        buttonPressesDone = buttonPressesNeededTotal / 2;
+
+        fightIsDecided = false;
+        fightAnimator = GetComponent<Animator>();
+        fightIndicator = GetComponentInChildren<FightStatusGUI>();
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnCollisionEnter2D()
     {
         Vector2 playerVelocity = GetComponent<Rigidbody2D>().velocity;
         
@@ -39,6 +58,31 @@ public class FightManager : MonoBehaviour
         }
     }
 
+    
+    // Animation functions
+    private void OnFightInitFinished()
+    {
+        GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.Fight);
+        fightAnimator.Play("Fight_Main");
+    }
+
+    private void OnIsFightEnding()
+    {
+        if (fightIsDecided)
+        {
+            GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
+            fightAnimator.Play("Fight_End");
+        }
+    }
+
+    private void OnFightDone()
+    {
+        Destroy(this);
+        GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelRunning);
+    }
+
+    
+    
 
     public void SetMovement(Vector2 movementDirection, CharType characterType)
     {
@@ -47,9 +91,27 @@ public class FightManager : MonoBehaviour
     
     public void SetAction(bool contextPerformed, CharType characterType)
     {
-        if (contextPerformed)
+        if (contextPerformed && GameManager.Instance.GetGameState() == GameState.Fight)
         {
             print($"{characterType.ToString()} punches really hard!");
+            if (characterType == CharType.Mouse)
+            {
+                buttonPressesDone++;
+            }
+            else if (characterType == CharType.Cat)
+            {
+                buttonPressesDone--;
+            }
+            
+            fightIndicator.AdjustIndicator(buttonPressesNeededTotal, buttonPressesDone);
+            
+            print($"Button Press status: {buttonPressesDone}");
+
+            if (buttonPressesDone <= 0 || buttonPressesDone >= buttonPressesNeededTotal)
+            {
+                print("Fight is over, checking who won ...");
+                GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
+            }
         }
     }
 }

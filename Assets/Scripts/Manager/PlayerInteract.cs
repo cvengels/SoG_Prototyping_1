@@ -38,6 +38,12 @@ public class PlayerInteract : MonoBehaviour
             }
             
         }
+        
+        // Everything else (interactive etc ...)
+        else
+        {
+            
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)

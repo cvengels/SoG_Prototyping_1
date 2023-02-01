@@ -76,16 +76,21 @@ public class FightManager : MonoBehaviour
 
     private void OnFightDone()
     {
+        GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
+    }
+
+    private void OnFightDestroy()
+    {
         GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelRunning);
     }
 
     
     
-
     public void SetMovement(Vector2 movementDirection, CharType characterType)
     {
         // Nothing here
     }
+    
     
     public void SetAction(bool contextPerformed, CharType characterType)
     {
@@ -108,7 +113,6 @@ public class FightManager : MonoBehaviour
             if (buttonPressesDone <= 0 || buttonPressesDone >= buttonPressesNeededTotal)
             {
                 print("Fight is over, checking who won ...");
-                GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.FightEnd);
 
                 if (buttonPressesDone >= buttonPressesNeededTotal)
                 {

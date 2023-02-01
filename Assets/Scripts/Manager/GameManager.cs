@@ -232,7 +232,7 @@ public class GameManager : MonoBehaviour
 
     public bool MouseHasWon()
     {
-        if (mouseLifesLeft > 1)
+        if (mouseLifesLeft > 0)
         {
             return true;
         }
@@ -241,8 +241,17 @@ public class GameManager : MonoBehaviour
     }
     
     // TODO implement Time (fixed time) with lerp to normal time
-
-
+    
+    
+    
+    // TODO Scene "Fade In" triggers level running and player input enabled (also for room change)
+    // TODO Scene "Fade Out" for new scene load enabled and disable player control at beginning of fade
+    
+    private void PrepareLoadingScene()
+    {
+        
+    }
+    
     private void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(gameScenes.Where(s => s.name == sceneName).ToString());
@@ -277,12 +286,30 @@ public class GameManager : MonoBehaviour
             case GameState.Credits:
                 break;
             case GameState.LevelBegin:
+                GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelRunning);
                 break;
             case GameState.LevelRunning:
+                // find Fight object after battle
                 GameObject fightObject = FindObjectOfType<FightManager>().gameObject;
                 if (fightObject != null)
                 {
                     Destroy(fightObject);
+                    PlayerInput[] players = FindObjectsOfType<PlayerInput>();
+                    string playerCamName = "";
+                    foreach (var player in players)
+                    {
+                        if (player.playerIndex == 0)
+                        {
+                            playerCamName = "Player1Cam";
+                        }
+                        else
+                        {
+                            playerCamName = "Player2Cam";
+                        }
+                    GameObject.FindGameObjectWithTag(playerCamName).
+                        GetComponent<CinemachineVirtualCamera>().
+                        Follow = player.transform;
+                    }
                 }
                 break;
             case GameState.FightBegin:
@@ -290,22 +317,6 @@ public class GameManager : MonoBehaviour
             case GameState.Fight:
                 break;
             case GameState.FightEnd:
-                PlayerInput[] players = FindObjectsOfType<PlayerInput>();
-                string playerCamName = "";
-                foreach (var player in players)
-                {
-                    if (player.playerIndex == 0)
-                    {
-                        playerCamName = "Player1Cam";
-                    }
-                    else
-                    {
-                        playerCamName = "Player2Cam";
-                    }
-                GameObject.FindGameObjectWithTag(playerCamName).
-                    GetComponent<CinemachineVirtualCamera>().
-                    Follow = player.transform;
-                }
 
                 break;
             case GameState.LevelEnd:
@@ -357,7 +368,8 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Fight:
                 if (newState == GameState.Pause ||
-                    newState == GameState.FightEnd)
+                    newState == GameState.FightEnd ||
+                    newState == GameState.LevelEnd)
                     return newState;
                 break;
             case GameState.FightEnd:
@@ -406,11 +418,13 @@ public class GameManager : MonoBehaviour
     {
         if (!MouseHasWon())
         {
+            print("Mouse has no more lifes");
             GameEventManager.Instance.GameEvent_OnGameStateChanged(GameState.LevelEnd);
         }
         else
         {
             mouseLifesLeft--;
+            print($"mouse has {mouseLifesLeft} lifes left");
         }
     }
 

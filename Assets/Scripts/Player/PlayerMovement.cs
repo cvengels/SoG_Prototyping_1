@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal, selectedSpeed;
 
     private bool isStunned;
-    [SerializeField] private float stunForce = 10f;
+    [SerializeField] private float stunForce = 50f;
 
     private void OnValidate()
     {
@@ -77,6 +77,10 @@ public class PlayerMovement : MonoBehaviour
         // check if coyote jump can be performed
         if (isOnFloor)
         {
+            if (isStunned)
+            {
+                isStunned = false;
+            }
             coyoteJumpEnabled = true;
             coyoteCounter = coyoteTimer;
         }
@@ -158,6 +162,11 @@ public class PlayerMovement : MonoBehaviour
     private void SetAnimationState()
     {
         CharType character = individualBehavior.GetPrefabType();
+        
+        if (isStunned)
+        {
+            ChangeAnimationState(character, AnimationType.Stun);
+        }
         
         if (!isOnFloor && isOnWall && selectedSpeed * transform.localScale.x > 0f)
         {
@@ -335,6 +344,7 @@ public class PlayerMovement : MonoBehaviour
         if (individualBehavior.GetPrefabType() == CharType.Cat)
         {
             isStunned = true;
+            animator.Play("Cat_Stun");
             playerRB.AddForce(direction * stunForce);
         }
     }

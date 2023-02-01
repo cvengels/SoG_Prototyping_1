@@ -184,17 +184,18 @@ public class PlayerInputHandler : MonoBehaviour
         if (GameManager.Instance.MouseHasWon())
         {
             surrogate.SetActive(true);
-            surrogate.transform.position = positionOfFightEnd;
 
             CharType characterType = surrogate.GetComponent<PlayerIndividualBehavior>().GetPrefabType();
             if (characterType == CharType.Cat)
             {
+                surrogate.transform.position = positionOfFightEnd + Vector3.left;
                 playerMovementController.Stun(Vector2.up + Vector2.left);
             }
             else if (characterType == CharType.Mouse)
             {
-                playerMovementController.SetMovement(Vector2.up + Vector2.right);
-                playerMovementController.SetAction(true, true);
+                surrogate.transform.position = positionOfFightEnd + Vector3.right;
+                playerMovementController.SetMovement((Vector2.up + Vector2.right) * 50f);
+                //playerMovementController.SetAction(true, true);
             }
         }
     }
@@ -211,9 +212,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        GameEventManager.Instance.onGameStateChanged -= OnGameStateChanged;
-        GameEventManager.Instance.onFightStarted += OnFightStarted;
-        GameEventManager.Instance.onFightEnded += OnFightEnded;
+        if (GameEventManager.Instance != null)
+        {
+            GameEventManager.Instance.onGameStateChanged -= OnGameStateChanged;
+            GameEventManager.Instance.onFightStarted -= OnFightStarted;
+            GameEventManager.Instance.onFightEnded -= OnFightEnded;
+        }
     }
 }
 

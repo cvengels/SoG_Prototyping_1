@@ -1,6 +1,8 @@
+using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Teleporter : MonoBehaviour
+public class Teleporter : MonoBehaviour, IComparable<Teleporter>
 {
     
     [SerializeField] private bool isMouseHole;
@@ -15,5 +17,21 @@ public class Teleporter : MonoBehaviour
     {
         return destination;
     }
-    
+
+    public override string ToString()
+    {
+        return this.name;
+    }
+
+    public int CompareTo(Teleporter other)
+    {
+        if (other == null)
+        {
+            return 1;
+        }
+        else
+        {
+            return this.name.CompareTo(other.name);
+        }
+    }
 }

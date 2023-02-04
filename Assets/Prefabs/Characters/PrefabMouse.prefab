@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7967474422364749276
 Transform:
   m_ObjectHideFlags: 0
@@ -390,6 +390,7 @@ MonoBehaviour:
   - {fileID: 7967474422651516953}
   rotationCenter: {fileID: 7967474423381194262}
   wallJumpTarget: {fileID: 8874306065900457584}
+  stunForce: 50
 --- !u!114 &7967474423245811675
 MonoBehaviour:
   m_ObjectHideFlags: 0

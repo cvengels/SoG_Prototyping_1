@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
     [Header("Spawn Points")] 
     [SerializeField] private List<SpawnPoint> spawnerList;
 
+    [Header("Teleporters")]
+    private List<Teleporter> teleporterList;
+    [SerializeField] private List<Teleporter> roomTeleporters;
+    [SerializeField] private List<Teleporter> mouseHoles;
+    [SerializeField] private float timeShowTeleporterDestinations = 30f;
+
     [Header("Global Statistics")]
     [SerializeField] private CharType catCharacterType = CharType.Cat;
     [SerializeField] private CharType mouseCharacterType = CharType.Mouse;
@@ -50,20 +56,32 @@ public class GameManager : MonoBehaviour
         }
         
 #if UNITY_STANDALONE
-        foreach (Transform editorHelper in GetComponentsInChildren<Transform>().Where(eh => eh.CompareTag("EditorOnly")))
+        foreach (GameObject editorHelper in GameObject.FindGameObjectsWithTag("EditorOnly").ToList())
         {
-            editorHelper.gameObject.SetActive(false);
+            editorHelper.gameObject.GetComponent<SpriteRenderer>().enabled = false;
         }
+        /*
+        foreach (GameObject spawnPoint in GameObject.FindGameObjectsWithTag("SpawnPoint").ToList())
+        {
+            spawnPoint.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        */
 #endif
         
         // Setup screens
         CheckForSecondScreen();
-
+        
+        // Find and sort all teleporters
+        AutoFillTeleporters();
+        DebugShowTeleporterDestinations(timeShowTeleporterDestinations);
+        DebugShowMouseholeDestinations(timeShowTeleporterDestinations);
+        
         // Find all spawn points
-        AutoFillCollectibles();
+        AutoFillSpawns();
 
         SetPlayerCharactersByRound();
     }
+    
 
 
     private void CheckForSecondScreen()
@@ -161,10 +179,136 @@ public class GameManager : MonoBehaviour
     {
         return nextSpawnPosition;
     }
+    
+    
+    [ContextMenu("Room Teleporters and Mouseholes")]
+    public void AutoFillTeleporters()
+    {
+        teleporterList = FindObjectsOfType<Teleporter>().ToList();
+        teleporterList.Sort();
+
+        if (teleporterList.Count != 0)
+        {
+            mouseHoles = new List<Teleporter>();
+            roomTeleporters = new List<Teleporter>();
+            
+            string s_mouseholes = "";
+            string s_roomTeleporters = "";
+            
+            foreach (var teleporter in teleporterList)
+            {
+                if (teleporter.IsMouseHole())
+                {
+                    s_mouseholes += teleporter.name + " ";
+                    mouseHoles.Add(teleporter);
+                }
+                else
+                {
+                    s_roomTeleporters += teleporter.name + " ";
+                    roomTeleporters.Add(teleporter);
+                }
+            }
+            
+            // TODO fix circle sorter for mouse holes
+            /*
+            List<GameObject> roomList = GameObject.FindGameObjectsWithTag("Room").ToList();
+            Vector2 centerPointOfAllRooms = Vector2.zero;
+            foreach (var room in roomList)
+            {
+                centerPointOfAllRooms += (Vector2)room.transform.position;
+            }
+            centerPointOfAllRooms /= roomList.Count;
+            
+            mouseHoles = SortGameObjectsInCircle(centerPointOfAllRooms, mouseHoles);
+            */
+            
+            print($"MouseHoles found ({mouseHoles.Count}): {s_mouseholes}");
+            print($"Teleporters found ({roomTeleporters.Count}): {s_roomTeleporters}");
+
+        }
+        else
+        {
+            print("No teleporters found");
+        }
+    }
+
+    private List<Teleporter> SortGameObjectsInCircle(Vector2 origin, List<Teleporter> originalList)
+    {
+        if (originalList.Count > 0)
+        {
+            List<Teleporter> copyOfOriginalList = new List<Teleporter>(originalList);
+            List<Teleporter> circleSortedList = new List<Teleporter>();
+            float angle = 0;
+            int raysToShoot = 720;
+            
+            for (int i=0; i<raysToShoot; i++) {
+                float x = Mathf.Sin (angle);
+                float y = Mathf.Cos (angle);
+                angle += 2 * Mathf.PI / raysToShoot;
+                
+                Vector3 dir = new Vector3 (origin.x + x * 1000, origin.y + y * 1000, 0);
+                RaycastHit2D hit = default;
+                //Debug.DrawLine (origin, dir, Color.gray, timeShowTeleporterDestinations);
+                if (Physics2D.Raycast(origin, dir, Mathf.Infinity, LayerMask.GetMask("InteractiveObjects"))) {
+                    if (hit != default && hit.transform.CompareTag(("Hole")))
+                    {
+                        print($"found GameObject {hit.transform.name}, added to circle sorted list");
+                        circleSortedList.Add(hit.transform.GetComponent<Teleporter>());
+                    }
+                }
+            }
+
+            return circleSortedList;
+        }
+
+        return null;
+    }
+
+    private void DebugShowTeleporterDestinations(float showLinesDuration)
+    {
+        List<GameObject> roomList = GameObject.FindGameObjectsWithTag("Room").ToList();
+
+        if (roomList.Count > 0)
+        {
+            foreach (var teleporter in roomTeleporters)
+            {
+                string s_teleporterDestinationName = teleporter.GetTeleporterDestination().ToString();
+                GameObject teleporterDestination = roomList.Where(t => t.name == s_teleporterDestinationName).SingleOrDefault();
+                    if (teleporterDestination != null)
+                    {
+                        /*print($"Drawing debug line from {teleporter.name}{(Vector2)teleporter.transform.position} " +
+                              $"to room {teleporterDestination.name}{(Vector2)teleporterDestination.transform.position}"); */
+                        Debug.DrawLine(teleporter.transform.position, teleporterDestination.transform.position, Color.green, showLinesDuration);
+                    }
+                    else
+                    {
+                        Debug.LogError($"Teleporter {teleporter.name} cannot be connected to {s_teleporterDestinationName}");
+                    }
+            }
+        }
+        else
+        {
+            print("No rooms found");
+        }
+    }
+
+    private void DebugShowMouseholeDestinations(float showLinesDuration)
+    {
+        if (mouseHoles.Count > 1)
+        {
+            Teleporter[] mouseHoleArray = mouseHoles.ToArray();
+            
+            for (int i = 0; i < mouseHoleArray.Length - 1; i++)
+            {
+                Debug.DrawLine(mouseHoleArray[i].transform.position, mouseHoleArray[i+1].transform.position, Color.cyan, showLinesDuration);
+            }
+            Debug.DrawLine(mouseHoleArray[mouseHoleArray.Length - 1].transform.position, mouseHoleArray[0].transform.position, Color.cyan, showLinesDuration);
+        }
+    }
 
 
     [ContextMenu("AutoFill Spawns")]
-    public void AutoFillCollectibles()
+    public void AutoFillSpawns()
     {
         spawnerList = FindObjectsOfType<SpawnPoint>().ToList();
 
